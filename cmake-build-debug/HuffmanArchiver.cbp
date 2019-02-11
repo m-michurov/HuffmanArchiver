@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="HuffmanArchiver"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HuffmanArchiver">
+				<Option output="E:/CLionProjects/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/Win-builds/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="HuffmanArchiver/fast">
+				<Option output="E:/CLionProjects/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="E:/Win-builds/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver/fast"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/definitions.h">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/main.c">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/pqueue.c">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/pqueue.h">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

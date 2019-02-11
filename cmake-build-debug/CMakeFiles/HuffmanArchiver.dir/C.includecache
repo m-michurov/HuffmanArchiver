@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+E:/CLionProjects/HuffmanArchiver/definitions.h
+
+E:/CLionProjects/HuffmanArchiver/main.c
+stdio.h
+-
+string.h
+-
+malloc.h
+-
+stdlib.h
+-
+limits.h
+-
+definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+pqueue.h
+E:/CLionProjects/HuffmanArchiver/pqueue.h
+
+E:/CLionProjects/HuffmanArchiver/pqueue.h
+malloc.h
+-
+stdlib.h
+-
+definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+
