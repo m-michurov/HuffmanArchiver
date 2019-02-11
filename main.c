@@ -55,24 +55,37 @@ void make_everything_nice(
     }
 }
 
-CHNode * read_tree(FILE * in, unsigned char * leaves) {
+CHNode * read_tree(FILE * in, unsigned char * leaves, unsigned int max) {
     static unsigned char buff;
     static unsigned int buff_pos = 8,
                         leaves_count = 0;
 
+    if (leaves_count == max)
+        return NULL;
+
+    int bit;
+
     CHNode * node;
 
-    if (buff_pos > 7)
-        buff = (unsigned char)fgetc(in), buff_pos = 0;
+    if (buff_pos > 7) {
+        buff = (unsigned char) fgetc(in), buff_pos = 0;
+        for (int y = 7; y >= 0; y--)
+            printf("%d", (buff >> y) & 0x01);
 
-    if (!((buff >> (7 - buff_pos++)) & 0x01)) {
-        printf("%d", buff >> (7 - buff_pos - 1));
-        node = newCHNode(0, leaves[leaves_count], 0, 0);
-        //putchar(leaves[leaves_count]);
+        puts("");
+    }
+
+
+    bit = (buff >> (7 - buff_pos++)) & 0x01;
+
+    if (bit == 0) {
+        //printf("%d", bit);
+        node = newCHNode(0, leaves[leaves_count++], 0, 0);
+        //putchar(leaves[leaves_count - 1]);
     } else {
         node = newCHNode(0, 0, 0, 0);
-        node->left = read_tree(in, leaves);
-        node->right = read_tree(in, leaves);
+        node->left = read_tree(in, leaves, max);
+        node->right = read_tree(in, leaves, max);
     }
 
     return node;
@@ -86,24 +99,45 @@ void write_tree(CHNode *node, FILE *out, bool first) {
     if (isLeaf(node)) {
         buff_pos++;
 
-        printf("0");
+        //printf("0");
 
-        if (buff_pos > 7)
-            fputc(buff, out), buff_pos = 0, buff = 0;
+        if (buff_pos > 7) {
+            fputc(buff, out);
+
+            for (int y = 7; y >= 0; y--)
+                printf("%d", (buff >> y) & 0x01);
+
+            puts("");
+
+            buff_pos = 0, buff = 0;
+        }
     } else {
         buff += (1 << (7 - buff_pos++));
 
-        printf("1");
+        //printf("1");
 
-        if (buff_pos > 7)
-            fputc(buff, out), buff_pos = 0, buff = 0;
+        if (buff_pos > 7) {
+            fputc(buff, out);
+
+            for (int y = 7; y >= 0; y--)
+                printf("%d", (buff >> y) & 0x01);
+
+            puts("");
+
+            buff_pos = 0, buff = 0;
+        }
 
         write_tree(node->left, out, false);
         write_tree(node->right, out, false);
     }
 
-    if (first && buff_pos)
+    if (first && buff_pos) {
         fputc(buff, out);
+        for (int y = 7; y >= 0; y--)
+            printf("%d", (buff >> y) & 0x01);
+
+        puts("");
+    }
 }
 
 void mk_leaves_array(CHNode *node, unsigned char * arr) {
@@ -113,7 +147,7 @@ void mk_leaves_array(CHNode *node, unsigned char * arr) {
     if (isLeaf(node)) {
         arr[count] = node->c;
         count++;
-        //putchar(node->c);
+        putchar(node->c);
         return;
     }
 
@@ -122,20 +156,28 @@ void mk_leaves_array(CHNode *node, unsigned char * arr) {
 
 }
 
-void write_header(CHNode *node, FILE *out, unsigned int char_count) {
+void write_header(CHNode *node, FILE *out, unsigned char char_count, unsigned int len) {
     printf("\n>>%u\n", char_count);
     unsigned char * leaves = (unsigned char *)malloc(char_count);
 
     mk_leaves_array(node, leaves);
 
-    fputc(char_count, out);
+    fwrite(&len, sizeof(int), 1, out);
+
+    printf("\nwritten len %u\n", len);
+
+    fwrite(&char_count, 1, 1, out);
+
+    printf("\nwritten char count %u\n", char_count);
 
     fwrite(leaves, 1, char_count, out);
 
-    write_tree(node, out, true);
+    for (int t = 0; t < char_count; t++)
+        putchar(leaves[t]);
 
-    //for (int t = 0; t < char_count; t++)
-    //    putchar(leaves[t]);
+    puts("");
+
+    write_tree(node, out, true);
 }
 
 void build_codes(CHNode *node, unsigned int pos, unsigned char **code_table, unsigned char * buff) {
@@ -186,7 +228,7 @@ void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table)
 
     len = (unsigned int) total;
 
-    fwrite(&len, sizeof(int), 1, out);
+
 
     for (k = 0; k <= UCHAR_MAX; k++)
         if (freqs[k] > max)
@@ -200,8 +242,8 @@ void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table)
         else
             char_freqs[k] = scale;
 
-        if (char_freqs[k])
-            printf("%c : %u : %u\n", k, k, char_freqs[k]);
+        //if (char_freqs[k])
+        //   printf("%c : %u : %u\n", k, k, char_freqs[k]);
     }
 
     //fwrite(char_freqs, 1, UCHAR_MAX + 1, out);
@@ -219,30 +261,45 @@ void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table)
         push(pq, newCHNode(a->freq + b->freq, 0, a, b))/*, printf(">>%d\n", queueLength(pq))*/;
     }
 
-    write_header((*pq)->char_data, out, CHAR_COUNT);
+    write_header((*pq)->char_data, out, (unsigned char)CHAR_COUNT, len);
 
     build_codes((*pq)->char_data, 0, code_table, (unsigned char *)malloc(64));
 
-    //for (int y = 0; y < 256; y++)
-    //    if (code_table[y])
-    //        printf("%c : %s\n", y, code_table[y]);
+    for (int y = 0; y < 256; y++)
+        if (code_table[y])
+            printf("%c : %s\n", y, code_table[y]);
 
 }
 
 
-void init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char ** code_table)
+CHNode * init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char ** code_table)
 {
     fread(len, sizeof(int), 1, in);
 
-    unsigned int leaves_count = (unsigned int)fgetc(in);
+    printf("\nread len %u\n", *len);
+
+    unsigned char leaves_count;
+
+    fread(&leaves_count, 1, 1, in);
+
+    printf("\nread char count %u\n", leaves_count);
 
     unsigned char * leaves = (unsigned char *)malloc(leaves_count);
 
     fread(leaves, 1, leaves_count, in);
 
-    tree = read_tree(in, leaves);
+    for (int t = 0; t < leaves_count; t++)
+        putchar(leaves[t]);
+
+    puts("");
+
+    tree = read_tree(in, leaves, leaves_count);
+
+    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
 
     build_codes(tree, 0, code_table, (unsigned char *)malloc(64));
+
+    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
     /*
     unsigned char char_freqs[UCHAR_MAX +1];
 
@@ -272,7 +329,9 @@ void init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char ** 
 
     for (int y = 0; y < 256; y++)
         if (code_table[y])
-            printf("%c : %s\n", y, code_table[y]);
+            printf("+ %c : %s\n", y, code_table[y]);
+
+    return tree;
 
 }
 
@@ -305,7 +364,7 @@ void decode(FILE * in, FILE * out, CHNode *t, unsigned int len)
 
             //putchar('0' + ((buff >> (7 - buff_pos)) & 0x01));
 
-            //printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right != NULL, n->left != NULL);
+            printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right != NULL, n->left != NULL);
 
             if ((buff >> (7 - buff_pos)) & 0x01)
                 n = n->right;
@@ -365,13 +424,13 @@ int main() {
     unsigned char *code_table[256] = {0};
     QNode *pq = 0;
 
-    fseek(in, 2, 0);
+    //fseek(in, 2, 0);
 
     init(in, out, &pq, code_table);
 
-    fseek(in, 2, 0);
+    //fseek(in, 2, 0);
 
-    printf("%u %u %u %u\n", queueLength(&pq), peek(&pq)->freq, treeHeight(pq->char_data), treeCount(pq->char_data));
+    printf("\n%u %u %u %u\n", queueLength(&pq), peek(&pq)->freq, treeHeight(pq->char_data), treeCount(pq->char_data));
 
     encode(in, out, code_table);
 
@@ -384,7 +443,7 @@ int main() {
     if (_in == NULL) INPUT_FILE_ERROR;
     if (_out == NULL) OUTPUT_FILE_ERROR;
 
-    fseek(_in, 2, 0);
+    //fseek(_in, 2, 0);
 
     CHNode *tree = 0;
 
@@ -392,7 +451,9 @@ int main() {
 
     unsigned int len;
 
-    init_decode(_in, tree, &len, _code_table);
+    tree = init_decode(_in, tree, &len, _code_table);
+
+    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
 
     decode(_in, _out, tree, len);
 
