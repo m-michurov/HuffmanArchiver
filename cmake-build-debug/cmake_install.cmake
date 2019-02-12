@@ -1,4 +1,4 @@
-# Install script for directory: E:/CLionProjects/HuffmanArchiver
+# Install script for directory: H:/NSUProgLabs/HuffmanArchiver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

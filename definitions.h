@@ -27,6 +27,11 @@ struct st_chnode {
     unsigned char c;
 };
 
+typedef struct st_code {
+    long long int code;
+    unsigned char len;
+} Code;
+
 
 typedef struct st_qnode QNode;
 

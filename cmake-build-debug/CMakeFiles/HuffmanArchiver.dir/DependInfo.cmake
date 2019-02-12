@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "E:/CLionProjects/HuffmanArchiver/main.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj"
-  "E:/CLionProjects/HuffmanArchiver/pqueue.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
+  "H:/NSUProgLabs/HuffmanArchiver/main.c" "H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj"
+  "H:/NSUProgLabs/HuffmanArchiver/pqueue.c" "H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

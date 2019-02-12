@@ -20,12 +20,14 @@ void make_everything_nice(
         unsigned const char *string,
         unsigned int string_len,
         unsigned char ** huffman_code,
+        Code ** codes,
         FILE * out,
         bool last)
 {
     static unsigned char buff = 0,
-            * code = 0,
             a = 0;
+
+    static long long int code;
 
     static unsigned int code_len = 0,
             buff_pos = 0,
@@ -35,8 +37,8 @@ void make_everything_nice(
         a = code_pos < code_len ? a : *(string++);
         code_pos = code_pos < code_len ? code_pos : 0;
 
-        code = huffman_code[a];
-        code_len = strlen((char *)code);
+        code = codes[a]->code;
+        code_len = codes[a]->len;
 
         for ( ; code_pos < code_len && buff_pos < 8; code_pos++, buff_pos++) {
             buff += (code[code_pos] - '0') << (7 - buff_pos);
@@ -180,10 +182,36 @@ void write_header(CHNode *node, FILE *out, unsigned char char_count, unsigned in
     write_tree(node, out, true);
 }
 
-void build_codes(CHNode *node, unsigned int pos, unsigned char **code_table, unsigned char * buff) {
+Code * make_code(const char * str_code, int code_len) {
+    Code * new_code = malloc(sizeof(Code));
+
+    new_code->code = 0;
+    new_code->len = (unsigned char)code_len;
+
+    for (int y = 0; y < code_len ; y++)
+        new_code->code += ((str_code[y] - '0') << ( code_len - y - 1));
+    return new_code;
+}
+
+void build_codes(CHNode *node, unsigned int pos, unsigned char **code_table, unsigned char * buff, Code **table) {
     //static unsigned char buff[64];
     static unsigned char *c;
 
+    if (isLeaf(node)) {
+        if (pos == 0)
+            buff[pos++] = '0';
+
+        buff[pos] = 0;
+
+        c = malloc(pos);
+        strcpy((char *)c, (char *)buff);
+        code_table[node->c] = c;
+
+        table[node->c] = make_code((char *)buff, pos);
+
+        return;
+    }
+/*
     if (isLeaf(node)) {
         buff[pos] = 0;
 
@@ -193,15 +221,16 @@ void build_codes(CHNode *node, unsigned int pos, unsigned char **code_table, uns
         return;
     }
 
+*/
     buff[pos] = '0';
-    build_codes(node->left, pos + 1, code_table, buff);
+    build_codes(node->left, pos + 1, code_table, buff, table);
 
     buff[pos] = '1';
-    build_codes(node->right, pos + 1, code_table, buff);
+    build_codes(node->right, pos + 1, code_table, buff, table);
 
 }
 
-void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table)
+void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table, Code ** codes)
 {
     unsigned char
             input_buff[BLOCK_SIZE],
@@ -263,11 +292,20 @@ void init(FILE * in, FILE * out, QNode** pq, unsigned char ** code_table)
 
     write_header((*pq)->char_data, out, (unsigned char)CHAR_COUNT, len);
 
-    build_codes((*pq)->char_data, 0, code_table, (unsigned char *)malloc(64));
+    build_codes((*pq)->char_data, 0, code_table, (unsigned char *)malloc(64), codes);
 
     for (int y = 0; y < 256; y++)
         if (code_table[y])
-            printf("%c : %s\n", y, code_table[y]);
+            printf("+ %c : %s \n", y, code_table[y]);
+
+    for (int y = 0; y < 256; y++)
+        if (codes[y]) {
+            printf("%c : ", y);
+
+            for (int u = 0; u < codes[y]->len; u++)
+                printf("%d", (int)(codes[y]->code >> ( codes[y]->len - u - 1)) & 0x01);
+            puts("");
+        }
 
 }
 
@@ -277,6 +315,8 @@ CHNode * init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char
     fread(len, sizeof(int), 1, in);
 
     printf("\nread len %u\n", *len);
+
+    Code *codes[256] = { 0 };
 
     unsigned char leaves_count;
 
@@ -295,11 +335,11 @@ CHNode * init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char
 
     tree = read_tree(in, leaves, leaves_count);
 
-    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
+    //printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
 
-    build_codes(tree, 0, code_table, (unsigned char *)malloc(64));
+    build_codes(tree, 0, code_table, (unsigned char *)malloc(64), codes);
 
-    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
+    //printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
     /*
     unsigned char char_freqs[UCHAR_MAX +1];
 
@@ -326,25 +366,34 @@ CHNode * init_decode(FILE * in, CHNode * tree, unsigned int * len, unsigned char
     build_codes((*pq)->char_data, 0, code_table, (unsigned char *)malloc(64));
 
     */
-
+/*
     for (int y = 0; y < 256; y++)
         if (code_table[y])
             printf("+ %c : %s\n", y, code_table[y]);
+*/
+    for (int y = 0; y < 256; y++)
+        if (codes[y]) {
+            printf("%c : ", y);
+
+            for (int u = 0; u < codes[y]->len; u++)
+                printf("%d", (int)(codes[y]->code >> ( codes[y]->len - u - 1)) & 0x01);
+            puts("");
+        }
 
     return tree;
 
 }
 
 
-void encode(FILE *in, FILE *out, unsigned char ** code_table)
+void encode(FILE *in, FILE *out, unsigned char ** code_table, Code ** codes)
 {
     unsigned char input_buff[8];
     unsigned int len = 0;
 
     while ((len = fread(input_buff, 1, 8, in)) == 8)
-        make_everything_nice(input_buff, len, code_table, out, false);
+        make_everything_nice(input_buff, len, code_table, codes, out, false);
 
-    make_everything_nice(input_buff, len, code_table, out, true);
+    make_everything_nice(input_buff, len, code_table, codes, out, true);
 }
 
 
@@ -357,32 +406,43 @@ void decode(FILE * in, FILE * out, CHNode *t, unsigned int len)
 
     unsigned int buff_pos = 0;
 
-    while (len > 0) {
-        buff = (unsigned char)fgetc(in);
+    if (isLeaf(t)) {
+        while (len > 0) {
 
-        for (buff_pos = 0 ; buff_pos < 8 && len; buff_pos++) {
+            fputc(n->c, out);
 
-            //putchar('0' + ((buff >> (7 - buff_pos)) & 0x01));
+            len--;
 
-            printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right != NULL, n->left != NULL);
+        }
+    } else {
 
-            if ((buff >> (7 - buff_pos)) & 0x01)
-                n = n->right;
-            else
-                n = n->left;
+        while (len > 0) {
+            buff = (unsigned char) fgetc(in);
 
-            //printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right ? 1 : 0, n->left ? 1 : 0);
+            for (buff_pos = 0; buff_pos < 8 && len; buff_pos++) {
 
-            if (isLeaf(n)) {
-                //printf("leaf\n");
+                //putchar('0' + ((buff >> (7 - buff_pos)) & 0x01));
 
-                //putchar(n->c);
+                printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right != NULL, n->left != NULL);
 
-                //printf("\n decoded ");
+                if ((buff >> (7 - buff_pos)) & 0x01)
+                    n = n->right;
+                else
+                    n = n->left;
 
-                fputc(n->c, out), n = t;
+                //printf(" char_node n->c : %u n->right : %u n->left : %u\n", n->c, n->right ? 1 : 0, n->left ? 1 : 0);
 
-                len--;
+                if (isLeaf(n)) {
+                    //printf("leaf\n");
+
+                    //putchar(n->c);
+
+                    //printf("\n decoded ");
+
+                    fputc(n->c, out), n = t;
+
+                    len--;
+                }
             }
         }
     }
@@ -424,15 +484,17 @@ int main() {
     unsigned char *code_table[256] = {0};
     QNode *pq = 0;
 
+    Code *codes[256] = { 0 };
+
     //fseek(in, 2, 0);
 
-    init(in, out, &pq, code_table);
+    init(in, out, &pq, code_table, codes);
 
     //fseek(in, 2, 0);
 
     printf("\n%u %u %u %u\n", queueLength(&pq), peek(&pq)->freq, treeHeight(pq->char_data), treeCount(pq->char_data));
 
-    encode(in, out, code_table);
+    //encode(in, out, code_table, codes);
 
     fclose(in);
     fclose(out);
@@ -453,9 +515,9 @@ int main() {
 
     tree = init_decode(_in, tree, &len, _code_table);
 
-    printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
+    //printf(" char_node n->c : %u n->right : %u n->left : %u\n", tree->c, tree->right != NULL, tree->left != NULL);
 
-    decode(_in, _out, tree, len);
+    //decode(_in, _out, tree, len);
 
     fclose(_in);
     fclose(_out);
