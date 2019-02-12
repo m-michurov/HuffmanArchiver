@@ -8,85 +8,93 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HuffmanArchiver">
-				<Option output="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug"/>
+				<Option output="E:/CLionProjects/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/include"/>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/include-fixed"/>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="E:/Win-builds/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver"/>
-					<CompileFile command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HuffmanArchiver/fast">
-				<Option output="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug"/>
+				<Option output="E:/CLionProjects/HuffmanArchiver/cmake-build-debug/HuffmanArchiver.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/include"/>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/include-fixed"/>
-					<Add directory="C:/tools/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/5.3.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="E:/Win-builds/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/include-fixed"/>
+					<Add directory="e:\win-builds\bin\../lib/gcc/i686-w64-mingw32/4.8.3/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver/fast"/>
-					<CompileFile command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 HuffmanArchiver/fast"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug"/>
+				<Option working_dir="E:/CLionProjects/HuffmanArchiver/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/tools/mingw64/bin/mingw32-make.exe -f &quot;H:/NSUProgLabs/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Win-builds/bin/mingw32-make.exe -f &quot;E:/CLionProjects/HuffmanArchiver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="H:/NSUProgLabs/HuffmanArchiver/definitions.h">
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/definitions.h">
 			<Option target="HuffmanArchiver"/>
 		</Unit>
-		<Unit filename="H:/NSUProgLabs/HuffmanArchiver/main.c">
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/main.c">
 			<Option target="HuffmanArchiver"/>
 		</Unit>
-		<Unit filename="H:/NSUProgLabs/HuffmanArchiver/pqueue.c">
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/pqueue.c">
 			<Option target="HuffmanArchiver"/>
 		</Unit>
-		<Unit filename="H:/NSUProgLabs/HuffmanArchiver/pqueue.h">
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/pqueue.h">
 			<Option target="HuffmanArchiver"/>
 		</Unit>
-		<Unit filename="H:/NSUProgLabs/HuffmanArchiver/CMakeLists.txt">
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/tree.c">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/tree.h">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

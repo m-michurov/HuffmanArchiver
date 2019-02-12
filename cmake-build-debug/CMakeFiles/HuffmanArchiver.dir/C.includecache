@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-H:/NSUProgLabs/HuffmanArchiver/definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
 
-H:/NSUProgLabs/HuffmanArchiver/main.c
+E:/CLionProjects/HuffmanArchiver/main.c
 stdio.h
 -
 string.h
@@ -20,15 +20,27 @@ stdlib.h
 limits.h
 -
 definitions.h
-H:/NSUProgLabs/HuffmanArchiver/definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+tree.h
+E:/CLionProjects/HuffmanArchiver/tree.h
 pqueue.h
-H:/NSUProgLabs/HuffmanArchiver/pqueue.h
+E:/CLionProjects/HuffmanArchiver/pqueue.h
 
-H:/NSUProgLabs/HuffmanArchiver/pqueue.h
+E:/CLionProjects/HuffmanArchiver/pqueue.h
 malloc.h
 -
 stdlib.h
 -
 definitions.h
-H:/NSUProgLabs/HuffmanArchiver/definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+
+E:/CLionProjects/HuffmanArchiver/tree.c
+tree.h
+E:/CLionProjects/HuffmanArchiver/tree.h
+
+E:/CLionProjects/HuffmanArchiver/tree.h
+stdlib.h
+-
+definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
 

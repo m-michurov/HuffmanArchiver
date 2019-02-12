@@ -4,8 +4,13 @@
 CMakeFiles/HuffmanArchiver.dir/main.c.obj: ../definitions.h
 CMakeFiles/HuffmanArchiver.dir/main.c.obj: ../main.c
 CMakeFiles/HuffmanArchiver.dir/main.c.obj: ../pqueue.h
+CMakeFiles/HuffmanArchiver.dir/main.c.obj: ../tree.h
 
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj: ../definitions.h
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj: ../pqueue.c
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj: ../pqueue.h
+
+CMakeFiles/HuffmanArchiver.dir/tree.c.obj: ../definitions.h
+CMakeFiles/HuffmanArchiver.dir/tree.c.obj: ../tree.c
+CMakeFiles/HuffmanArchiver.dir/tree.c.obj: ../tree.h
 

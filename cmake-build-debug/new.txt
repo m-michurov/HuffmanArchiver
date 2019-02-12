@@ -1,0 +1,7 @@
+$\cos(\arcsin(x)) - ?$
+
+$\sin^2(x)+\cos^2(x)=1 \Rightarrow \cos^2(x)=1-\sin^2(x) \Rightarrow \cos(x)= \pm \sqrt{1-\sin^2(x)}$
+
+То есть: $\cos(\arcsin(x)) = \pm \sqrt{1-\sin^2(\arcsin(x))} = \pm \sqrt{1-x^2}$
+
+Во многих пособия, да и в интернетах, пишут однозначно: $\cos(\arcsin(x)) = \sqrt{1-x^2}$

@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = "E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = H:\NSUProgLabs\HuffmanArchiver
+CMAKE_SOURCE_DIR = E:\CLionProjects\HuffmanArchiver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug
+CMAKE_BINARY_DIR = E:\CLionProjects\HuffmanArchiver\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/HuffmanArchiver.dir/depend.make
@@ -58,45 +58,60 @@ include CMakeFiles/HuffmanArchiver.dir/flags.make
 
 CMakeFiles/HuffmanArchiver.dir/main.c.obj: CMakeFiles/HuffmanArchiver.dir/flags.make
 CMakeFiles/HuffmanArchiver.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/HuffmanArchiver.dir/main.c.obj"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\HuffmanArchiver.dir\main.c.obj   -c H:\NSUProgLabs\HuffmanArchiver\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/HuffmanArchiver.dir/main.c.obj"
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\HuffmanArchiver.dir\main.c.obj   -c E:\CLionProjects\HuffmanArchiver\main.c
 
 CMakeFiles/HuffmanArchiver.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/HuffmanArchiver.dir/main.c.i"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E H:\NSUProgLabs\HuffmanArchiver\main.c > CMakeFiles\HuffmanArchiver.dir\main.c.i
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\CLionProjects\HuffmanArchiver\main.c > CMakeFiles\HuffmanArchiver.dir\main.c.i
 
 CMakeFiles/HuffmanArchiver.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/HuffmanArchiver.dir/main.c.s"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S H:\NSUProgLabs\HuffmanArchiver\main.c -o CMakeFiles\HuffmanArchiver.dir\main.c.s
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\CLionProjects\HuffmanArchiver\main.c -o CMakeFiles\HuffmanArchiver.dir\main.c.s
 
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj: CMakeFiles/HuffmanArchiver.dir/flags.make
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj: ../pqueue.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\HuffmanArchiver.dir\pqueue.c.obj   -c H:\NSUProgLabs\HuffmanArchiver\pqueue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\HuffmanArchiver.dir\pqueue.c.obj   -c E:\CLionProjects\HuffmanArchiver\pqueue.c
 
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/HuffmanArchiver.dir/pqueue.c.i"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E H:\NSUProgLabs\HuffmanArchiver\pqueue.c > CMakeFiles\HuffmanArchiver.dir\pqueue.c.i
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\CLionProjects\HuffmanArchiver\pqueue.c > CMakeFiles\HuffmanArchiver.dir\pqueue.c.i
 
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/HuffmanArchiver.dir/pqueue.c.s"
-	C:\tools\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S H:\NSUProgLabs\HuffmanArchiver\pqueue.c -o CMakeFiles\HuffmanArchiver.dir\pqueue.c.s
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\CLionProjects\HuffmanArchiver\pqueue.c -o CMakeFiles\HuffmanArchiver.dir\pqueue.c.s
+
+CMakeFiles/HuffmanArchiver.dir/tree.c.obj: CMakeFiles/HuffmanArchiver.dir/flags.make
+CMakeFiles/HuffmanArchiver.dir/tree.c.obj: ../tree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/HuffmanArchiver.dir/tree.c.obj"
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\HuffmanArchiver.dir\tree.c.obj   -c E:\CLionProjects\HuffmanArchiver\tree.c
+
+CMakeFiles/HuffmanArchiver.dir/tree.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/HuffmanArchiver.dir/tree.c.i"
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E E:\CLionProjects\HuffmanArchiver\tree.c > CMakeFiles\HuffmanArchiver.dir\tree.c.i
+
+CMakeFiles/HuffmanArchiver.dir/tree.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/HuffmanArchiver.dir/tree.c.s"
+	E:\Win-builds\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S E:\CLionProjects\HuffmanArchiver\tree.c -o CMakeFiles\HuffmanArchiver.dir\tree.c.s
 
 # Object files for target HuffmanArchiver
 HuffmanArchiver_OBJECTS = \
 "CMakeFiles/HuffmanArchiver.dir/main.c.obj" \
-"CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
+"CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj" \
+"CMakeFiles/HuffmanArchiver.dir/tree.c.obj"
 
 # External object files for target HuffmanArchiver
 HuffmanArchiver_EXTERNAL_OBJECTS =
 
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/main.c.obj
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj
+HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/tree.c.obj
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/build.make
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/linklibs.rsp
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/objects1.rsp
 HuffmanArchiver.exe: CMakeFiles/HuffmanArchiver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable HuffmanArchiver.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable HuffmanArchiver.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\HuffmanArchiver.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -109,6 +124,6 @@ CMakeFiles/HuffmanArchiver.dir/clean:
 .PHONY : CMakeFiles/HuffmanArchiver.dir/clean
 
 CMakeFiles/HuffmanArchiver.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" H:\NSUProgLabs\HuffmanArchiver H:\NSUProgLabs\HuffmanArchiver H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles\HuffmanArchiver.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\CLionProjects\HuffmanArchiver E:\CLionProjects\HuffmanArchiver E:\CLionProjects\HuffmanArchiver\cmake-build-debug E:\CLionProjects\HuffmanArchiver\cmake-build-debug E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles\HuffmanArchiver.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/HuffmanArchiver.dir/depend
 

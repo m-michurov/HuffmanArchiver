@@ -1,6 +1,6 @@
 #include "pqueue.h"
 
-CHNode* newCHNode(
+CHNode * newCHNode(
         int freq,
         unsigned char c,
         CHNode * left,
@@ -18,7 +18,7 @@ CHNode* newCHNode(
 }
 
 
-QNode* newQNode(
+QNode * newQNode(
         CHNode * data)
 {
     QNode* temp = (QNode*)malloc(sizeof(QNode));
@@ -39,7 +39,7 @@ CHNode * peek(
 
 
 void pop(
-        QNode** head)
+        QNode ** head)
 {
     QNode* temp = *head;
     (*head) = (*head)->next;
@@ -47,14 +47,14 @@ void pop(
 }
 
 
-int isEmpty(QNode** head)
+int isEmpty(QNode ** head)
 {
     return (*head) == NULL;
 }
 
 
 void push(
-        QNode** head,
+        QNode ** head,
         CHNode * data)
 {
     if (isEmpty(head)) {
@@ -93,7 +93,7 @@ void push(
 }
 
 int queueLength(
-        QNode **head)
+        QNode ** head)
 {
     QNode * start = *head;
     int len = 0;
@@ -110,7 +110,7 @@ int queueLength(
 }
 
 CHNode * get(
-        QNode** head)
+        QNode ** head)
 {
     CHNode * temp = peek(head);
     pop(head);

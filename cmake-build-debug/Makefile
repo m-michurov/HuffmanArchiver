@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -E remove -f
+RM = "E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = H:\NSUProgLabs\HuffmanArchiver
+CMAKE_SOURCE_DIR = E:\CLionProjects\HuffmanArchiver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug
+CMAKE_BINARY_DIR = E:\CLionProjects\HuffmanArchiver\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2018.2.1\bin\cmake\win\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"E:\CLion 2018.2.3\bin\cmake\win\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start H:\NSUProgLabs\HuffmanArchiver\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -176,6 +176,33 @@ pqueue.c.s:
 	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/pqueue.c.s
 .PHONY : pqueue.c.s
 
+tree.obj: tree.c.obj
+
+.PHONY : tree.obj
+
+# target to build an object file
+tree.c.obj:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.obj
+.PHONY : tree.c.obj
+
+tree.i: tree.c.i
+
+.PHONY : tree.i
+
+# target to preprocess a source file
+tree.c.i:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.i
+.PHONY : tree.c.i
+
+tree.s: tree.c.s
+
+.PHONY : tree.s
+
+# target to generate assembly for a file
+tree.c.s:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.s
+.PHONY : tree.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -191,6 +218,9 @@ help:
 	@echo ... pqueue.obj
 	@echo ... pqueue.i
 	@echo ... pqueue.s
+	@echo ... tree.obj
+	@echo ... tree.i
+	@echo ... tree.s
 .PHONY : help
 
 
