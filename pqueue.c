@@ -31,14 +31,14 @@ QNode * newQNode(
 }
 
 
-CHNode * peek(
+inline CHNode * peek(
         QNode** head)
 {
     return (*head)->char_data;
 }
 
 
-void pop(
+static void pop(
         QNode ** head)
 {
     QNode* temp = *head;
@@ -47,7 +47,7 @@ void pop(
 }
 
 
-int isEmpty(QNode ** head)
+inline int isEmpty(QNode ** head)
 {
     return (*head) == NULL;
 }
@@ -109,7 +109,7 @@ int queueLength(
     return len;
 }
 
-CHNode * get(
+inline CHNode * get(
         QNode ** head)
 {
     CHNode * temp = peek(head);

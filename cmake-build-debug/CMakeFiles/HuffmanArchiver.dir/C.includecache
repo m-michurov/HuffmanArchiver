@@ -6,23 +6,23 @@
 
 #IncludeRegexTransform: 
 
-E:/CLionProjects/HuffmanArchiver/definitions.h
-
-E:/CLionProjects/HuffmanArchiver/main.c
+E:/CLionProjects/HuffmanArchiver/coding.c
 stdio.h
--
-string.h
--
-malloc.h
--
-stdlib.h
--
-limits.h
 -
 definitions.h
 E:/CLionProjects/HuffmanArchiver/definitions.h
+coding.h
+E:/CLionProjects/HuffmanArchiver/coding.h
 tree.h
 E:/CLionProjects/HuffmanArchiver/tree.h
+pqueue.h
+E:/CLionProjects/HuffmanArchiver/pqueue.h
+
+E:/CLionProjects/HuffmanArchiver/coding.h
+
+E:/CLionProjects/HuffmanArchiver/definitions.h
+
+E:/CLionProjects/HuffmanArchiver/pqueue.c
 pqueue.h
 E:/CLionProjects/HuffmanArchiver/pqueue.h
 
@@ -33,10 +33,6 @@ stdlib.h
 -
 definitions.h
 E:/CLionProjects/HuffmanArchiver/definitions.h
-
-E:/CLionProjects/HuffmanArchiver/tree.c
-tree.h
-E:/CLionProjects/HuffmanArchiver/tree.h
 
 E:/CLionProjects/HuffmanArchiver/tree.h
 stdlib.h

@@ -19,15 +19,15 @@ QNode * newQNode(
         CHNode * data);
 
 
-CHNode * peek(
+extern inline CHNode * peek(
         QNode ** head);
 
 
-void pop(
+static void pop(
         QNode ** head);
 
 
-int isEmpty(
+extern inline int isEmpty(
         QNode ** head);
 
 
@@ -39,7 +39,7 @@ int queueLength(
         QNode ** head);
 
 
-CHNode * get(
+extern inline CHNode * get(
         QNode ** head);
 
 #endif

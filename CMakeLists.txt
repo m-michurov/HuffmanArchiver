@@ -3,4 +3,4 @@ project(HuffmanArchiver C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(HuffmanArchiver main.c definitions.h pqueue.c pqueue.h tree.c tree.h)
+add_executable(HuffmanArchiver main.c definitions.h pqueue.c pqueue.h tree.c tree.h coding.c coding.h)

@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/HuffmanArchiver.dir/main.c.obj"
   "CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
   "CMakeFiles/HuffmanArchiver.dir/tree.c.obj"
+  "CMakeFiles/HuffmanArchiver.dir/coding.c.obj"
   "HuffmanArchiver.pdb"
   "HuffmanArchiver.exe"
   "HuffmanArchiver.exe.manifest"
