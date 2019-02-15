@@ -12,11 +12,11 @@ static inline int read_bit(
         FILE * in,
         bool last);
 
-void make_everything_nice(
+void encode_string(
         unsigned char *string,
         unsigned int string_len,
-        Code ** codes,
-        FILE * out,
+        Code **codes,
+        FILE *out,
         bool last);
 
 static CHNode * read_tree(
@@ -32,7 +32,7 @@ static void write_tree(
 static void write_header(
         CHNode *node,
         FILE *out,
-        unsigned char char_count,
+        unsigned short char_count,
         unsigned int len);
 
 static Code * make_code(
@@ -42,7 +42,6 @@ static Code * make_code(
 static void build_codes(
         CHNode *node,
         unsigned int pos,
-        unsigned char * buff,
         Code **table);
 
 void init_encode(
@@ -60,14 +59,11 @@ CHNode * init_decode(
 
 void encode(
         FILE *in,
-        FILE *out,
-        Code ** codes);
+        FILE *out);
 
 
 void decode(
         FILE * in,
-        FILE * out,
-        CHNode *t,
-        unsigned int len);
+        FILE * out);
 
 #endif

@@ -23,7 +23,7 @@ extern inline CHNode * peek(
         QNode ** head);
 
 
-static void pop(
+void pop(
         QNode ** head);
 
 

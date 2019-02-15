@@ -22,9 +22,21 @@ E:/CLionProjects/HuffmanArchiver/coding.h
 
 E:/CLionProjects/HuffmanArchiver/definitions.h
 
-E:/CLionProjects/HuffmanArchiver/pqueue.c
-pqueue.h
-E:/CLionProjects/HuffmanArchiver/pqueue.h
+E:/CLionProjects/HuffmanArchiver/main.c
+stdio.h
+-
+string.h
+-
+malloc.h
+-
+stdlib.h
+-
+limits.h
+-
+definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+coding.h
+E:/CLionProjects/HuffmanArchiver/coding.h
 
 E:/CLionProjects/HuffmanArchiver/pqueue.h
 malloc.h

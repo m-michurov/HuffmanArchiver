@@ -38,7 +38,7 @@ inline CHNode * peek(
 }
 
 
-static void pop(
+void pop(
         QNode ** head)
 {
     QNode* temp = *head;
