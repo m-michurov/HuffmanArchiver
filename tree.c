@@ -3,7 +3,7 @@
 bool isLeaf(
         CHNode *node)
 {
-    return node->left || node->right ? false : true;
+    return node->child[left] || node->child[right] ? false : true;
 }
 
 
@@ -13,8 +13,8 @@ unsigned int treeHeight(
     if (root == NULL)
         return 0;
 
-    unsigned int l = treeHeight(root->left);
-    unsigned int r = treeHeight(root->right);
+    unsigned int l = treeHeight(root->child[left]);
+    unsigned int r = treeHeight(root->child[right]);
 
     return (l > r ? l : r) + 1;
 }
@@ -26,7 +26,7 @@ int treeCount(
     if (root == NULL)
         return 1;
 
-    return treeCount(root->left) + treeCount(root->right);
+    return treeCount(root->child[left]) + treeCount(root->child[right]);
 }
 
 
@@ -42,7 +42,7 @@ void makeLeavesArray(
         return;
     }
 
-    makeLeavesArray(node->left, arr);
-    makeLeavesArray(node->right, arr);
+    makeLeavesArray(node->child[left], arr);
+    makeLeavesArray(node->child[right], arr);
 
 }

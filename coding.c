@@ -83,8 +83,8 @@ static CHNode * read_tree(
         node = newCHNode(0, leaves[leaves_count++], 0, 0);
     } else {
         node = newCHNode(0, 0, 0, 0);
-        node->left = read_tree(in, leaves, max);
-        node->right = read_tree(in, leaves, max);
+        node->child[left] = read_tree(in, leaves, max);
+        node->child[right] = read_tree(in, leaves, max);
     }
 
     return node;
@@ -92,23 +92,17 @@ static CHNode * read_tree(
 
 static void write_tree(
         FILE *out,
-        CHNode *node,
-        bool first)
+        CHNode *node)
 {
-    static int rest;
-
     if (isLeaf(node)) {
-        rest = write_bit(out, 0, false);
+        write_bit(out, 0, false);
     }
     else {
-        rest = write_bit(out, 1, false);
+        write_bit(out, 1, false);
 
-        write_tree(out, node->left, false);
-        write_tree(out, node->right, false);
+        write_tree(out, node->child[left]);
+        write_tree(out, node->child[right]);
     }
-
-    if (first && rest)
-        write_bit(out, 0, true);
 }
 
 static void write_header(
@@ -129,7 +123,7 @@ static void write_header(
 
     fwrite(leaves, 1, char_count, out);
 
-    write_tree(out, node, true);
+    write_tree(out, node);
 /*
     for (int t = 0; t < char_count; t++)
         putchar(leaves[t]);
@@ -176,10 +170,10 @@ static void build_codes(
     }
 
     buff[pos] = '0';
-    build_codes(node->left, pos + 1, table);
+    build_codes(node->child[left], pos + 1, table);
 
     buff[pos] = '1';
-    build_codes(node->right, pos + 1, table);
+    build_codes(node->child[right], pos + 1, table);
 
 }
 
@@ -280,8 +274,8 @@ CHNode * init_decode(
 
     tree = read_tree(in, leaves, leaves_count);
 
-    if (treeCount(tree) % 8)
-        read_bit(in, true);
+    //if (treeCount(tree) % 8)
+    //    read_bit(in, true);
 /*
     build_codes(tree, 0, codes);
 
@@ -351,9 +345,9 @@ void decode(
             bit = read_bit(in, false);
 
             if (bit)
-                n = n->right;
+                n = n->child[right];
             else
-                n = n->left;
+                n = n->child[left];
 
             if (isLeaf(n))
                 fputc(n->c, out), n = tree, len--;

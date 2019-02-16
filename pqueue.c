@@ -1,15 +1,16 @@
 #include "pqueue.h"
+#include "definitions.h"
 
 CHNode * newCHNode(
-        int freq,
+        unsigned int freq,
         unsigned char c,
-        CHNode * left,
-        CHNode * right)
+        CHNode * l,
+        CHNode * r)
 {
     CHNode* data = (CHNode*)malloc(sizeof(CHNode));
 
-    data->left = left;
-    data->right = right;
+    data->child[left] = l;
+    data->child[right] = r;
 
     data->c = c;
     data->freq = freq;

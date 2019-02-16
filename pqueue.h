@@ -9,10 +9,10 @@
 #include "definitions.h"
 
 CHNode * newCHNode(
-        int freq,
+        unsigned int freq,
         unsigned char c,
-        CHNode * left,
-        CHNode * right);
+        CHNode * l,
+        CHNode * r);
 
 
 QNode * newQNode(
