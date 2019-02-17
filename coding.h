@@ -26,7 +26,8 @@ static CHNode * read_tree(
 
 static void write_tree(
         FILE *out,
-        CHNode *node);
+        CHNode *node,
+        bool first);
 
 static void write_header(
         CHNode *node,
@@ -58,7 +59,8 @@ CHNode * init_decode(
 
 void encode(
         FILE *in,
-        FILE *out);
+        FILE *out,
+        bool skip);
 
 
 void decode(

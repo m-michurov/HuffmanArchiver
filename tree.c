@@ -3,6 +3,9 @@
 bool isLeaf(
         CHNode *node)
 {
+    if (node == NULL)
+        return 0;
+
     return node->child[left] || node->child[right] ? false : true;
 }
 
@@ -34,6 +37,8 @@ void makeLeavesArray(
         CHNode * node,
         unsigned char * arr)
 {
+    if (node == NULL)
+        return;
 
     static unsigned int count = 0;
 
