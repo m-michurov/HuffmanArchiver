@@ -8,6 +8,8 @@
 
 #include "definitions.h"
 
+// struct types are defined in "definitions.h"
+
 CHNode * newCHNode(
         unsigned int freq,
         unsigned char c,
@@ -19,7 +21,15 @@ QNode * newQNode(
         CHNode * data);
 
 
-extern inline CHNode * peek(
+bool isLeaf(
+        CHNode * node);
+
+
+void freeTree(
+        CHNode * root);
+
+
+CHNode * peek(
         QNode ** head);
 
 
@@ -27,7 +37,7 @@ void pop(
         QNode ** head);
 
 
-extern inline int isEmpty(
+int isEmpty(
         QNode ** head);
 
 
@@ -39,7 +49,7 @@ int queueLength(
         QNode ** head);
 
 
-extern inline CHNode * get(
+CHNode * get(
         QNode ** head);
 
 #endif

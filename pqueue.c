@@ -1,3 +1,7 @@
+/*----------------------------------------------------------------*
+ * https://www.geeksforgeeks.org/priority-queue-using-linked-list *
+ *----------------------------------------------------------------*/
+
 #include "pqueue.h"
 #include "definitions.h"
 
@@ -7,30 +11,48 @@ CHNode * newCHNode(
         CHNode * l,
         CHNode * r)
 {
-    CHNode* data = (CHNode*)malloc(sizeof(CHNode));
+    CHNode* new_node = (CHNode*)malloc(sizeof(CHNode));
 
-    data->child[left] = l;
-    data->child[right] = r;
+    new_node->child[left] = l;
+    new_node->child[right] = r;
 
-    data->c = c;
-    data->freq = freq;
+    new_node->c = c;
+    new_node->freq = freq;
 
-    return data;
+    return new_node;
 }
-
 
 QNode * newQNode(
         CHNode * data)
 {
-    QNode* temp = (QNode*)malloc(sizeof(QNode));
+    QNode* new_node = (QNode*)malloc(sizeof(QNode));
 
-    temp->char_data = data;
+    new_node->char_data = data;
+    new_node->next = NULL;
 
-    temp->next = NULL;
-
-    return temp;
+    return new_node;
 }
 
+inline bool isLeaf(
+        CHNode *node)
+{
+    if (node == NULL)
+        return 0;
+
+    return node->child[left] || node->child[right] ? false : true;
+}
+
+void freeTree(
+        CHNode * root)
+{
+    if (root == NULL)
+        return;
+
+    freeTree(root->child[left]);
+    freeTree(root->child[right]);
+
+    free(root);
+}
 
 inline CHNode * peek(
         QNode** head)
@@ -38,8 +60,7 @@ inline CHNode * peek(
     return (*head)->char_data;
 }
 
-
-void pop(
+inline void pop(
         QNode ** head)
 {
     QNode* temp = *head;
@@ -47,12 +68,11 @@ void pop(
     free(temp);
 }
 
-
-inline int isEmpty(QNode ** head)
+inline int isEmpty(
+        QNode ** head)
 {
     return (*head) == NULL;
 }
-
 
 void push(
         QNode ** head,
@@ -78,7 +98,6 @@ void push(
         (*head) = temp;
     }
     else {
-
         // Traverse the list and find a
         // position to insert new char_node
         while (start->next != NULL &&

@@ -203,33 +203,6 @@ pqueue.c.s:
 	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/pqueue.c.s
 .PHONY : pqueue.c.s
 
-tree.obj: tree.c.obj
-
-.PHONY : tree.obj
-
-# target to build an object file
-tree.c.obj:
-	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.obj
-.PHONY : tree.c.obj
-
-tree.i: tree.c.i
-
-.PHONY : tree.i
-
-# target to preprocess a source file
-tree.c.i:
-	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.i
-.PHONY : tree.c.i
-
-tree.s: tree.c.s
-
-.PHONY : tree.s
-
-# target to generate assembly for a file
-tree.c.s:
-	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/tree.c.s
-.PHONY : tree.c.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -248,9 +221,6 @@ help:
 	@echo ... pqueue.obj
 	@echo ... pqueue.i
 	@echo ... pqueue.s
-	@echo ... tree.obj
-	@echo ... tree.i
-	@echo ... tree.s
 .PHONY : help
 
 

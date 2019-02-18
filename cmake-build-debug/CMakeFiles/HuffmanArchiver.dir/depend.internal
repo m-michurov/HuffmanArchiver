@@ -6,16 +6,12 @@ CMakeFiles/HuffmanArchiver.dir/coding.c.obj
  E:/CLionProjects/HuffmanArchiver/coding.h
  E:/CLionProjects/HuffmanArchiver/definitions.h
  E:/CLionProjects/HuffmanArchiver/pqueue.h
- E:/CLionProjects/HuffmanArchiver/tree.h
 CMakeFiles/HuffmanArchiver.dir/main.c.obj
  E:/CLionProjects/HuffmanArchiver/coding.h
  E:/CLionProjects/HuffmanArchiver/definitions.h
  E:/CLionProjects/HuffmanArchiver/main.c
+ E:/CLionProjects/HuffmanArchiver/pqueue.h
 CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj
  E:/CLionProjects/HuffmanArchiver/definitions.h
  E:/CLionProjects/HuffmanArchiver/pqueue.c
  E:/CLionProjects/HuffmanArchiver/pqueue.h
-CMakeFiles/HuffmanArchiver.dir/tree.c.obj
- E:/CLionProjects/HuffmanArchiver/definitions.h
- E:/CLionProjects/HuffmanArchiver/tree.c
- E:/CLionProjects/HuffmanArchiver/tree.h

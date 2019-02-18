@@ -7,7 +7,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "E:/CLionProjects/HuffmanArchiver/coding.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/coding.c.obj"
   "E:/CLionProjects/HuffmanArchiver/main.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj"
   "E:/CLionProjects/HuffmanArchiver/pqueue.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"
-  "E:/CLionProjects/HuffmanArchiver/tree.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/tree.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

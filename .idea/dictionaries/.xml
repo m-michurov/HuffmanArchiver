@@ -1,13 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Мичуров">
     <words>
+      <w>archiver</w>
       <w>automata</w>
       <w>chebooreck</w>
       <w>chnode</w>
       <w>freqs</w>
       <w>huffmanarchiver</w>
+      <w>inputfilename</w>
       <w>nier</w>
       <w>nwritten</w>
+      <w>outputfilename</w>
       <w>pqueue</w>
       <w>printf</w>
       <w>putchar</w>
