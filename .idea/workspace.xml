@@ -12,35 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37c69508-d1e4-43a8-a53e-185d0d05ba09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects1.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HuffmanArchiver.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/HuffmanArchiver.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HuffmanArchiver.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/in.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/in.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/new.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/new.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coding.c" beforeDir="false" afterPath="$PROJECT_DIR$/coding.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coding.h" beforeDir="false" afterPath="$PROJECT_DIR$/coding.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definitions.h" beforeDir="false" afterPath="$PROJECT_DIR$/definitions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.c" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-153">
               <folding>
                 <element signature="e#204#222#0" expanded="true" />
               </folding>
@@ -69,24 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/coding.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
+            <state relative-caret-position="899">
               <caret line="281" selection-start-line="281" selection-end-line="281" />
-              <folding>
-                <element signature="e#104#396#0" />
-                <element signature="e#398#737#0" />
-                <element signature="e#739#945#0" />
-                <element signature="e#947#1132#0" />
-                <element signature="e#1134#1574#0" />
-                <element signature="e#1576#1991#0" />
-                <element signature="e#1993#2372#0" />
-                <element signature="e#2374#2840#0" />
-                <element signature="e#2842#3454#0" />
-                <element signature="e#3456#4473#0" />
-                <element signature="e#4475#5154#0" />
-                <element signature="e#5157#5417#0" />
-                <element signature="e#5420#5886#0" />
-                <element signature="e#5889#6556#0" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,7 +71,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pqueue.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-529">
+            <state relative-caret-position="-315">
               <caret line="1" column="67" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
               <folding>
                 <element signature="e#46#328#0" />
@@ -198,7 +154,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.C/C++" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -238,7 +194,7 @@
       <workItem from="1550317644581" duration="3942000" />
       <workItem from="1550326432439" duration="15591000" />
       <workItem from="1550401880395" duration="3336000" />
-      <workItem from="1550412076852" duration="9371000" />
+      <workItem from="1550412076852" duration="9818000" />
     </task>
     <task id="LOCAL-00001" summary="dunno it works i guess">
       <created>1550159067593</created>
@@ -268,11 +224,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550412546744</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="whew it works">
+      <created>1550493061188</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1550493061188</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47102000" />
+    <option name="totallyTimeSpent" value="47549000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -285,7 +248,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49772727" visible="true" weight="0.2624811" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -297,7 +259,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Database Changes" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.49924356" visible="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49924356" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32872504" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32872504" />
@@ -317,7 +279,8 @@
     <MESSAGE value="command line arguments" />
     <MESSAGE value="tREEEEEEEEEEEEEEE" />
     <MESSAGE value="oh god why" />
-    <option name="LAST_COMMIT_MESSAGE" value="oh god why" />
+    <MESSAGE value="whew it works" />
+    <option name="LAST_COMMIT_MESSAGE" value="whew it works" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -364,11 +327,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
+    <entry file="file://$PROJECT_DIR$/coding.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-17">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
           <folding>
-            <element signature="e#204#222#0" expanded="true" />
+            <element signature="e#80#98#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -382,7 +346,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pqueue.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-529">
+        <state relative-caret-position="-315">
           <caret line="1" column="67" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
           <folding>
             <element signature="e#46#328#0" />
@@ -406,36 +370,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coding.h">
+    <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+        <state relative-caret-position="-153">
           <folding>
-            <element signature="e#80#98#0" expanded="true" />
+            <element signature="e#204#222#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coding.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="967">
+        <state relative-caret-position="899">
           <caret line="281" selection-start-line="281" selection-end-line="281" />
-          <folding>
-            <element signature="e#104#396#0" />
-            <element signature="e#398#737#0" />
-            <element signature="e#739#945#0" />
-            <element signature="e#947#1132#0" />
-            <element signature="e#1134#1574#0" />
-            <element signature="e#1576#1991#0" />
-            <element signature="e#1993#2372#0" />
-            <element signature="e#2374#2840#0" />
-            <element signature="e#2842#3454#0" />
-            <element signature="e#3456#4473#0" />
-            <element signature="e#4475#5154#0" />
-            <element signature="e#5157#5417#0" />
-            <element signature="e#5420#5886#0" />
-            <element signature="e#5889#6556#0" />
-          </folding>
         </state>
       </provider>
     </entry>
