@@ -3,6 +3,8 @@
 #ifndef HUFFMANARCHIVER_DEFINITIONS_H
 #define HUFFMANARCHIVER_DEFINITIONS_H
 
+#include <stdio.h>
+
 #define BLOCK_SIZE 256 // 2^8 do not change
 
 #define INPUT_FILE_ERROR {puts("Error: cannot access input file"); exit(EXIT_SUCCESS);};
@@ -23,26 +25,33 @@
 
 typedef unsigned int bool;
 
-typedef struct st_qnode QNode;
-typedef struct st_chnode CHNode;
+typedef struct st_QNode QNode;
+typedef struct st_CHnode CHNode;
 
 // a binary tree node
-struct st_chnode {
+struct st_CHnode {
     CHNode * child[2];
     unsigned int freq;
     unsigned char c;
 };
 
 // a queue node
-struct st_qnode {
+struct st_QNode {
     CHNode * char_data;
 
     QNode * next;
 };
 
-typedef struct st_code {
-    long long int code;
-    unsigned char len;
+typedef struct st_Code {
+    char code[BLOCK_SIZE + 1];
+    unsigned short len;
 } Code;
+
+typedef struct st_BitBuff {
+    char string[BLOCK_SIZE];
+    int string_pos;
+    int byte_pos;
+    FILE * file;
+} IO_BUFF;
 
 #endif

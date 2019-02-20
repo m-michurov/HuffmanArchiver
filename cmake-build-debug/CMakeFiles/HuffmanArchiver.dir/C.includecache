@@ -13,12 +13,16 @@ E:/CLionProjects/HuffmanArchiver/coding.h
 E:/CLionProjects/HuffmanArchiver/coding.h
 stdio.h
 -
+string.h
+-
 definitions.h
 E:/CLionProjects/HuffmanArchiver/definitions.h
 pqueue.h
 E:/CLionProjects/HuffmanArchiver/pqueue.h
 
 E:/CLionProjects/HuffmanArchiver/definitions.h
+stdio.h
+-
 
 E:/CLionProjects/HuffmanArchiver/main.c
 stdio.h

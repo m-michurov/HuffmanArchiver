@@ -1,180 +1,140 @@
 #include "coding.h"
 
-static inline int write_bit(
-        FILE * out,
-        int bit,
-        bool last)
+static inline void __write_bit(
+        IO_BUFF * out,
+        int bit)
 {
-    static char buff = 0;
-    static int pos = 0;
+    out->string[out->string_pos] += (bit & 0x01) << (7 - out->byte_pos++);
+    //printf("%d|%d(%d) ", out->string_pos, out->byte_pos-1, bit);
 
-    buff += (bit & 0x01) << (7 - pos++);
+    if (out->byte_pos > 7) {
+        out->byte_pos = 0;
 
-    if (pos > 7 || last) {
-        fputc(buff, out);
-        buff = 0;
-        pos = 0;
+        //printf("--%d--", out->string[out->string_pos]);
+
+        if (out->string_pos == BLOCK_SIZE - 1) {
+            fwrite(out->string, 1, BLOCK_SIZE, out->file);
+            out->string_pos = 0;
+            memset(out->string, 0, BLOCK_SIZE);
+            return;
+        }
+        out->string_pos++;
     }
-
-    return pos;
 }
 
-static inline int read_bit(
-        FILE * in,
-        bool last)
+static inline int __read_bit(
+        IO_BUFF * in)
 {
-    static char buff;
-    static int pos = 8;
-
-    if (pos > 7) {
-        buff = (char) fgetc(in);
-        pos = 0;
+    if (in->byte_pos > 7) {
+        in->string_pos++;
+        in->byte_pos = 0;
     }
 
-    if (last && (pos != 0)) {
-        buff = (char) fgetc(in);
-        pos = 0;
-        return 0;
+    if (in->string_pos == BLOCK_SIZE) {
+        fread(in->string, 1, BLOCK_SIZE, in->file);
+        in->string_pos = 0;
+        in->byte_pos = 0;
     }
 
-    return (buff >> (7 - pos++))  & 0x01;
+    return ((in->string[in->string_pos]) >> (7 - in->byte_pos++))  & 0x01;
 }
 
-static inline int write_byte(
-        FILE * out,
+static inline void __write_byte(
+        IO_BUFF * out,
         unsigned char byte)
 {
-    int pos = 0;
-
     for (int k = 7; k >= 0; k--)
-        pos = write_bit(out, (byte >> k) & 0x01, false);
-
-    return pos;
+        __write_bit(out, (byte >> k) & 0x01);
 }
-
-static inline char read_byte(
-        FILE * in)
+static inline char __read_byte(
+        IO_BUFF * in)
 {
     unsigned char byte = 0;
 
     for (int k = 7; k >= 0; k--)
-        byte += (read_bit(in, false) << k);
+        byte += (__read_bit(in) << k);
 
     return byte;
 }
 
-static void write_tree(
-        FILE * out,
-        CHNode * node,
-        bool first) {
-    static int rest;
-
-    if (isLeaf(node)) {
-        rest = write_bit(out, 0, false);
-
-        rest = write_byte(out, node->c);
-    } else {
-        rest = write_bit(out, 1, false);
-
-        write_tree(out, node->child[left], false);
-        write_tree(out, node->child[right], false);
-    }
-
-    if (first && rest)
-        write_bit(out, 0, true);
+static inline void __write_end(
+        IO_BUFF * out)
+{
+    fwrite(out->string, 1, out->string_pos + (size_t)(out->byte_pos ? 1 : 0), out->file);
 }
 
-static CHNode * read_tree(
-        FILE * in)
+static inline void __next(
+        IO_BUFF * buff)
 {
-    static int bit = 0;
+    buff->string_pos += buff->byte_pos ? 1 : 0;
+    buff->byte_pos = 0;
+}
 
-    static unsigned char byte = 0;
+static void __write_tree(
+        IO_BUFF * out,
+        CHNode * node)
+{
+    if (isLeaf(node)) {
+        __write_bit(out, 0);
+
+        __write_byte(out, node->c);
+    } else {
+        __write_bit(out, 1);
+
+        __write_tree(out, node->child[left]);
+        __write_tree(out, node->child[right]);
+    }
+}
+static CHNode * __read_tree(
+        IO_BUFF * in)
+{
+    int bit = 0;
+
+    unsigned char byte = 0;
 
     CHNode * node;
 
-    bit = read_bit(in, false);
+    bit = __read_bit(in);
 
     if (bit == 0) {
-        byte = (unsigned char)read_byte(in);
+        byte = (unsigned char)__read_byte(in);
         node = newCHNode(0, byte, 0, 0);
     } else {
         node = newCHNode(0, 0, 0, 0);
-        node->child[left] = read_tree(in);
-        node->child[right] = read_tree(in);
+        node->child[left] = __read_tree(in);
+        node->child[right] = __read_tree(in);
     }
 
     return node;
 }
 
-static Code * make_code_from_string(
-        const char *str_code,
-        int code_len)
-{
-    Code * new_code = malloc(sizeof(Code));
-
-    if (new_code == NULL) MEM_ERROR;
-
-    new_code->code = 0;
-    new_code->len = (unsigned char)code_len;
-
-    for (int y = 0; y < code_len ; y++)
-        new_code->code += ((str_code[y] - '0') << ( code_len - y - 1));
-
-    return new_code;
-}
-
 static void build_codes(
         CHNode * node,
         unsigned int pos,
+        char * buff,
         Code ** table)
 {
     if (node == NULL)
         return;
 
-    static char buff[BLOCK_SIZE / 4];
-
     if (isLeaf(node)) {
         buff[pos] = 0;
 
-        table[node->c] = make_code_from_string((char *) buff, pos);
+        table[node->c] = (Code *)malloc(sizeof(Code));
+
+        if (table[node->c] == NULL) MEM_ERROR;
+
+        strcpy(table[node->c]->code, buff);
+        table[node->c]->len = (short)pos;
 
         return;
     }
 
     buff[pos] = '0';
-    build_codes(node->child[left], pos + 1, table);
+    build_codes(node->child[left], pos + 1, buff, table);
 
     buff[pos] = '1';
-    build_codes(node->child[right], pos + 1, table);
-}
-
-static inline void encode_string(
-        unsigned char *string,
-        unsigned int string_len,
-        Code ** codes,
-        FILE * out,
-        bool last)
-{
-    static long long int code;
-
-    static int
-            code_len = 0,
-            pos = 0,
-            rest = 0;
-
-    while (string_len > 0) {
-        code = codes[(int) *string]->code;
-        code_len = codes[(int) *(string++)]->len;
-
-        for (pos = code_len - 1 ; pos >= 0; pos--)
-            rest = write_bit(out, (int) ((code >> pos) & 0x01), false);
-
-        string_len--;
-    }
-
-    if (rest && last)
-        write_bit(out, 0, true);;
+    build_codes(node->child[right], pos + 1, buff, table);
 }
 
 unsigned char * count_freqs(
@@ -225,12 +185,16 @@ static void init_encode(
         FILE *in,
         FILE *out,
         QNode **pq,
-        Code **codes)
+        Code **codes,
+        IO_BUFF * stream)
 {
     unsigned char * char_freqs;
+    char * buff = (char *)malloc(BLOCK_SIZE + 1);
     unsigned int len = 0;
 
     CHNode * a, * b;
+
+    if (buff == NULL) MEM_ERROR;
 
     char_freqs = count_freqs(in, &len);
 
@@ -249,28 +213,28 @@ static void init_encode(
 
     fwrite(&len, sizeof(int), 1, out);
 
-    write_tree(out, (*pq)->char_data, true);
+    __write_tree(stream, (*pq)->char_data);
+    __next(stream);
 
-    build_codes((*pq)->char_data, 0, codes);
+    build_codes((*pq)->char_data, 0, buff, codes);
 
     freeTree((*pq)->char_data);
-
     free(*pq);
 }
 
 static CHNode * init_decode(
-        FILE * in,
+        IO_BUFF * in,
         CHNode * tree,
         unsigned int * len)
 {
-    if (!fread(len, sizeof(int), 1, in)) {
+    if (!fread(len, sizeof(int), 1, in->file)) {
         *len = 0;
         return NULL;
     }
 
-    tree = read_tree(in);
+    tree = __read_tree(in);
 
-    read_bit(in, true);
+    __next(in);
 
     return tree;
 }
@@ -285,19 +249,42 @@ void encode(
     Code *code_table[BLOCK_SIZE] = { 0 };
 
     unsigned char input_buff[BLOCK_SIZE];
-    unsigned int len = 0;
+    unsigned int len = 0,
+    string_pos = 0;
+    char * code;
 
-    init_encode(in, out, &pq, code_table);
+    int code_len = 0,
+            pos = 0;
+
+    IO_BUFF * buff = (IO_BUFF *)malloc(sizeof(IO_BUFF));
+
+    memset(buff->string, 0, BLOCK_SIZE);
+    buff->file = out;
+    buff->string_pos = 0;
+    buff->byte_pos = 0;
+
+    init_encode(in, out, &pq, code_table, buff);
 
     rewind(in);
 
     if (skip)
         fseek(in, 3, 0);
 
-    while ((len = fread(input_buff, 1, BLOCK_SIZE, in)))
-        encode_string(input_buff, len, code_table, out, false);
+    while ((len = fread(input_buff, 1, BLOCK_SIZE, in))) {
+        string_pos = 0;
 
-    encode_string(input_buff, len, code_table, out, true);
+        while (len > 0) {
+            code = code_table[input_buff[string_pos]]->code;
+            code_len = code_table[input_buff[string_pos++]]->len;
+
+            for (pos = 0; pos < code_len; pos++)
+                __write_bit(buff, code[pos] - '0');
+
+            len--;
+        }
+    }
+
+    __write_end(buff);
 
     for (int k = 0; k < BLOCK_SIZE; k++)
         if (code_table[k])
@@ -314,28 +301,32 @@ void decode(
     CHNode *tree = 0,
            *n = 0;
 
-    tree = init_decode(in, tree, &len);
+    IO_BUFF * buff = (IO_BUFF *)malloc(sizeof(IO_BUFF));
+
+    memset(buff->string, 0, BLOCK_SIZE);
+    buff->file = in;
+    buff->string_pos = BLOCK_SIZE;
+    buff->byte_pos = 0;
+
+    tree = init_decode(buff, tree, &len);
 
     if (tree == NULL)
         return;
 
     n = tree;
 
-    if (isLeaf(tree)) {
-        while (len > 0)
-            fputc(n->c, out), len--;
-    }
-    else {
-        while (len > 0) {
-            bit = read_bit(in, false);
+    while (len > 0) {
+        if (isLeaf(n)) {
+            fputc(n->c, out);
+            n = tree;
+            len--;
+        } else {
+            bit = __read_bit(buff);
 
             if (bit)
                 n = n->child[right];
             else
                 n = n->child[left];
-
-            if (isLeaf(n))
-                fputc(n->c, out), n = tree, len--;
         }
     }
 
