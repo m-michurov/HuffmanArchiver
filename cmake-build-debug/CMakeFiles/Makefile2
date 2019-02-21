@@ -70,7 +70,7 @@ CMAKE_BINARY_DIR = E:\CLionProjects\HuffmanArchiver\cmake-build-debug
 CMakeFiles/HuffmanArchiver.dir/all:
 	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/depend
 	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target HuffmanArchiver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5 "Built target HuffmanArchiver"
 .PHONY : CMakeFiles/HuffmanArchiver.dir/all
 
 # Include target in all.
@@ -80,7 +80,7 @@ all: CMakeFiles/HuffmanArchiver.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/HuffmanArchiver.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles 5
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/HuffmanArchiver.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start E:\CLionProjects\HuffmanArchiver\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/HuffmanArchiver.dir/rule

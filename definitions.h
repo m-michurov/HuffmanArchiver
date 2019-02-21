@@ -5,8 +5,6 @@
 
 #include <stdio.h>
 
-#define BLOCK_SIZE 256 // 2^8 do not change
-
 #define INPUT_FILE_ERROR {puts("Error: cannot access input file"); exit(EXIT_SUCCESS);};
 #define MEM_ERROR {puts("Error: unable to allocate memory"); exit(EXIT_SUCCESS);};
 #define SIZE_ERROR {puts("Error: input file too big"); exit(EXIT_SUCCESS);};
@@ -17,41 +15,44 @@
                                     "INPUTFILENAME to OUTPUTFILENAME\n\n\tOptions:\n\t\t-e\tencode\n\t\t-d\t" \
                                     "decode\n\t\t"); exit(EXIT_SUCCESS);};
 
+#define BLOCK_SIZE 256 // 2^8 do not change
+
 #define true 1
 #define false 0
+
+#define WRITE 256
+#define READ 0
 
 #define right 1
 #define left 0
 
 typedef unsigned int bool;
 
-typedef struct st_QNode QNode;
-typedef struct st_CHnode CHNode;
+typedef struct st_QueueNode QUEUE_NODE;
+typedef struct st_TreeNode TREE_NODE;
 
 // a binary tree node
-struct st_CHnode {
-    CHNode * child[2];
-    unsigned int freq;
+struct st_TreeNode
+{
+    TREE_NODE * child[2];
+    size_t quantity;
     unsigned char c;
 };
 
 // a queue node
-struct st_QNode {
-    CHNode * char_data;
+struct st_QueueNode
+{
+    TREE_NODE * char_data;
 
-    QNode * next;
+    QUEUE_NODE * next;
 };
 
-typedef struct st_Code {
-    char code[BLOCK_SIZE + 1];
-    unsigned short len;
-} Code;
+// a struct to store Huffman code and it's length
+typedef struct st_Code
+{
+    unsigned char code[BLOCK_SIZE + 1];
 
-typedef struct st_BitBuff {
-    char string[BLOCK_SIZE];
-    int string_pos;
-    int byte_pos;
-    FILE * file;
-} IO_BUFF;
+    size_t len;
+} Code;
 
 #endif

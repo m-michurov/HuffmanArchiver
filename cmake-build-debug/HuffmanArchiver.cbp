@@ -74,6 +74,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/binio.c">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
+		<Unit filename="E:/CLionProjects/HuffmanArchiver/binio.h">
+			<Option target="HuffmanArchiver"/>
+		</Unit>
 		<Unit filename="E:/CLionProjects/HuffmanArchiver/coding.c">
 			<Option target="HuffmanArchiver"/>
 		</Unit>

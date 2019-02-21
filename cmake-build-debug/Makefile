@@ -122,6 +122,33 @@ HuffmanArchiver/fast:
 	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/build
 .PHONY : HuffmanArchiver/fast
 
+binio.obj: binio.c.obj
+
+.PHONY : binio.obj
+
+# target to build an object file
+binio.c.obj:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/binio.c.obj
+.PHONY : binio.c.obj
+
+binio.i: binio.c.i
+
+.PHONY : binio.i
+
+# target to preprocess a source file
+binio.c.i:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/binio.c.i
+.PHONY : binio.c.i
+
+binio.s: binio.c.s
+
+.PHONY : binio.s
+
+# target to generate assembly for a file
+binio.c.s:
+	$(MAKE) -f CMakeFiles\HuffmanArchiver.dir\build.make CMakeFiles/HuffmanArchiver.dir/binio.c.s
+.PHONY : binio.c.s
+
 coding.obj: coding.c.obj
 
 .PHONY : coding.obj
@@ -212,6 +239,9 @@ help:
 	@echo ... HuffmanArchiver
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... binio.obj
+	@echo ... binio.i
+	@echo ... binio.s
 	@echo ... coding.obj
 	@echo ... coding.i
 	@echo ... coding.s

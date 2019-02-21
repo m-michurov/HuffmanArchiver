@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "E:/CLionProjects/HuffmanArchiver/binio.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/binio.c.obj"
   "E:/CLionProjects/HuffmanArchiver/coding.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/coding.c.obj"
   "E:/CLionProjects/HuffmanArchiver/main.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj"
   "E:/CLionProjects/HuffmanArchiver/pqueue.c" "E:/CLionProjects/HuffmanArchiver/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/pqueue.c.obj"

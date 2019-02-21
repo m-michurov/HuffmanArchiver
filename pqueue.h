@@ -10,46 +10,46 @@
 
 // struct types are defined in "definitions.h"
 
-CHNode * newCHNode(
+TREE_NODE * newCHNode(
         unsigned int freq,
         unsigned char c,
-        CHNode * l,
-        CHNode * r);
+        TREE_NODE * l,
+        TREE_NODE * r);
 
 
-QNode * newQNode(
-        CHNode * data);
+QUEUE_NODE * newQNode(
+        TREE_NODE * data);
 
 
 bool isLeaf(
-        CHNode * node);
+        TREE_NODE * node);
 
 
 void freeTree(
-        CHNode * root);
+        TREE_NODE * root);
 
 
-CHNode * peek(
-        QNode ** head);
+TREE_NODE * peek(
+        QUEUE_NODE ** head);
 
 
 void pop(
-        QNode ** head);
+        QUEUE_NODE ** head);
 
 
 int isEmpty(
-        QNode ** head);
+        QUEUE_NODE ** head);
 
 
 void push(
-        QNode ** head, CHNode * data);
+        QUEUE_NODE ** head, TREE_NODE * data);
 
 
 int queueLength(
-        QNode ** head);
+        QUEUE_NODE ** head);
 
 
-CHNode * get(
-        QNode ** head);
+TREE_NODE * get(
+        QUEUE_NODE ** head);
 
 #endif
