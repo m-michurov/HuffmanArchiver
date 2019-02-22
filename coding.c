@@ -180,7 +180,8 @@ void EncodeFile(
            code_len = 0,
            pos = 0;
 
-    unsigned int input_file_len = 0;
+    unsigned int input_file_len = 0,
+                 completed_len = 0;
 
     Code * code_table[MAX_BYTE_COUNT] = { 0 };
 
@@ -209,6 +210,7 @@ void EncodeFile(
         fseek(fin, 0, 0);
 
     while ((buff_len = fread(input_buff, 1, BLOCK_SIZE, fin))) {
+        completed_len += buff_len;
         buff_pos = 0;
 
         while (buff_len > 0) {
@@ -220,6 +222,9 @@ void EncodeFile(
 
             buff_len--;
         }
+
+        if (!skip_three)
+            printf("\r%.2lf %%", (double)completed_len / input_file_len * 100);
     }
 
     EndWrite(out);
@@ -247,7 +252,9 @@ void DecodeFile(
 
     unsigned char output_buff[BLOCK_SIZE];
     unsigned int len = 0,
-                 output_pos = 0;
+                 output_pos = 0,
+                 stored_len = 0,
+                 completed_len = 0;
     int bit;
 
     TREE_NODE * tree = 0,
@@ -263,6 +270,8 @@ void DecodeFile(
     if (!len)
         return;
 
+    stored_len = len;
+
     tree = read_tree(out);
     NextByte(out);
 
@@ -277,6 +286,12 @@ void DecodeFile(
 
             if (output_pos == BLOCK_SIZE) {
                 fwrite(output_buff, 1, BLOCK_SIZE, fout);
+
+                completed_len += output_pos;
+
+                if (!skip_three)
+                    printf("\r%.2lf %%", (double)completed_len / stored_len * 100);
+
                 output_pos = 0;
             }
 
@@ -295,6 +310,9 @@ void DecodeFile(
     DestroyTree(tree);
 
     fwrite(output_buff, 1, output_pos, fout);
+
+    if (!skip_three)
+        printf("\r%.2lf %%", 100.00);
 
     fclose(fin);
     fclose(fout);

@@ -13,16 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="37c69508-d1e4-43a8-a53e-185d0d05ba09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binio.c" beforeDir="false" afterPath="$PROJECT_DIR$/binio.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binio.h" beforeDir="false" afterPath="$PROJECT_DIR$/binio.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coding.c" beforeDir="false" afterPath="$PROJECT_DIR$/coding.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coding.h" beforeDir="false" afterPath="$PROJECT_DIR$/coding.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definitions.h" beforeDir="false" afterPath="$PROJECT_DIR$/definitions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.c" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/binio.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="-119">
+              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
               <folding>
                 <element signature="e#79#97#0" expanded="true" />
               </folding>
@@ -63,10 +54,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coding.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coding.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="425">
               <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
               <folding>
                 <element signature="e#81#100#0" expanded="true" />
@@ -78,7 +78,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pqueue.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="170">
               <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
             </state>
           </provider>
@@ -101,18 +101,18 @@
         <option value="$PROJECT_DIR$/pqueue.c" />
         <option value="$PROJECT_DIR$/binio.c" />
         <option value="$PROJECT_DIR$/main.c" />
-        <option value="$PROJECT_DIR$/coding.c" />
         <option value="$PROJECT_DIR$/definitions.h" />
         <option value="$PROJECT_DIR$/pqueue.h" />
         <option value="$PROJECT_DIR$/coding.h" />
         <option value="$PROJECT_DIR$/binio.h" />
+        <option value="$PROJECT_DIR$/coding.c" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="491" />
-    <option name="y" value="-18" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="567" />
     <option name="height" value="775" />
   </component>
@@ -188,7 +188,9 @@
       <workItem from="1550586317196" duration="2413000" />
       <workItem from="1550651327310" duration="8179000" />
       <workItem from="1550747046272" duration="12059000" />
-      <workItem from="1550841092771" duration="5235000" />
+      <workItem from="1550841092771" duration="5540000" />
+      <workItem from="1550852911032" duration="60000" />
+      <workItem from="1550854201297" duration="3787000" />
     </task>
     <task id="LOCAL-00001" summary="dunno it works i guess">
       <created>1550159067593</created>
@@ -253,11 +255,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550835146240</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="The final version&#10;-I hope so&#10;-At least it looks somewhat good">
+      <created>1550846488421</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1550846488422</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78553000" />
+    <option name="totallyTimeSpent" value="82705000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -272,7 +281,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49772727" visible="true" weight="0.28290468" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49772727" visible="true" weight="0.29198185" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5022727" side_tool="true" weight="0.25869894" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -282,7 +291,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Database Changes" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49924356" visible="true" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.49924356" visible="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32872504" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32872504" />
@@ -306,7 +315,8 @@
     <MESSAGE value="work in progress&#10;-functions used to read/write bits are now given all the required info via struct pointer&#10;-encode function has been modified to work directly with input/output files instead of using separate function to encode newly read string&#10;-minor adjustments" />
     <MESSAGE value="work in progress&#10;-functions used for binary input/output are now in a separate .c file&#10;-redundant functions were completely removed&#10;-minor adjustments" />
     <MESSAGE value="work in progress&#10;-if i change one f***ing number it doesn't work and o don't know why" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress&#10;-if i change one f***ing number it doesn't work and o don't know why" />
+    <MESSAGE value="The final version&#10;-I hope so&#10;-At least it looks somewhat good" />
+    <option name="LAST_COMMIT_MESSAGE" value="The final version&#10;-I hope so&#10;-At least it looks somewhat good" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -391,22 +401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coding.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="162" column="1" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
-          <folding>
-            <element signature="e#21#319#0" />
-            <element signature="e#321#726#0" />
-            <element signature="e#728#1332#0" />
-            <element signature="e#1334#2395#0" />
-            <element signature="e#2397#3191#0" />
-            <element signature="e#3193#4418#0" />
-            <element signature="e#4420#5393#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -414,16 +408,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pqueue.h">
+    <entry file="file://$PROJECT_DIR$/binio.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        <state relative-caret-position="-119">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#79#97#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coding.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="425">
           <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
           <folding>
             <element signature="e#81#100#0" expanded="true" />
@@ -431,13 +428,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/binio.h">
+    <entry file="file://$PROJECT_DIR$/pqueue.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding>
-            <element signature="e#79#97#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coding.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="209" column="25" selection-start-line="209" selection-start-column="25" selection-end-line="209" selection-end-column="25" />
         </state>
       </provider>
     </entry>
