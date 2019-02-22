@@ -1,21 +1,22 @@
 #include "coding.h"
 
-static void __write_tree(
+static void write_tree(
         IO_BUFF * out,
         TREE_NODE * node)
 {
     if (isLeaf(node)) {
-        __write_bit(out, 0);
+        write_bit(out, 0);
 
-        __write_byte(out, node->c);
+        write_byte(out, node->c);
     } else {
-        __write_bit(out, 1);
+        write_bit(out, 1);
 
-        __write_tree(out, node->child[left]);
-        __write_tree(out, node->child[right]);
+        write_tree(out, node->child[left]);
+        write_tree(out, node->child[right]);
     }
 }
-static TREE_NODE * __read_tree(
+
+static TREE_NODE * read_tree(
         IO_BUFF * in)
 {
     int bit = 0;
@@ -24,15 +25,17 @@ static TREE_NODE * __read_tree(
 
     TREE_NODE * node;
 
-    bit = __read_bit(in);
+    bit = read_bit(in);
 
     if (bit == 0) {
-        byte = __read_byte(in);
+        byte = read_byte(in);
+
         node = newCHNode(0, byte, 0, 0);
     } else {
         node = newCHNode(0, 0, 0, 0);
-        node->child[left] = __read_tree(in);
-        node->child[right] = __read_tree(in);
+
+        node->child[left] = read_tree(in);
+        node->child[right] = read_tree(in);
     }
 
     return node;
@@ -72,12 +75,12 @@ unsigned char * count_freqs(
         unsigned int * len)
 {
     unsigned char input_buff[BLOCK_SIZE],
-                * char_freqs = (unsigned char *)malloc(BLOCK_SIZE),
-                  scale = 0;
+                * char_freqs = (unsigned char *)malloc(MAX_BYTE_COUNT),
+                  scaled = 0;
 
     unsigned int max = UCHAR_MAX,
                  k = 0,
-                 freqs[BLOCK_SIZE] = { 0 },
+                 freqs[MAX_BYTE_COUNT] = { 0 },
                  pos = 0;
 
     unsigned long long total = 0;
@@ -96,18 +99,18 @@ unsigned char * count_freqs(
 
     *len = (unsigned int) total;
 
-    for (k = 0; k < BLOCK_SIZE; k++)
+    for (k = 0; k < MAX_BYTE_COUNT; k++)
         if (freqs[k] > max)
             max = freqs[k];
 
 
-    for (k = 0; k < BLOCK_SIZE; k++) {
-        scale = (unsigned char)(freqs[k] / ((double)max / (double)UCHAR_MAX));
+    for (k = 0; k < MAX_BYTE_COUNT; k++) {
+        scaled = (unsigned char)(freqs[k] / ((double)max / (double)UCHAR_MAX));
 
-        if (scale == 0 && freqs[k] != 0)
+        if (scaled == 0 && freqs[k] != 0)
             char_freqs[k] = 1;
         else
-            char_freqs[k] = scale;
+            char_freqs[k] = scaled;
     }
 
     return char_freqs;
@@ -131,7 +134,7 @@ static TREE_NODE * build_tree(
 
     *len = input_file_len;
 
-    for (int i = 0; i < BLOCK_SIZE; i++)
+    for (int i = 0; i < MAX_BYTE_COUNT; i++)
         if (char_freqs[i])
             push(queue, newCHNode(char_freqs[i], (unsigned char)i, 0, 0));
 
@@ -147,6 +150,7 @@ static TREE_NODE * build_tree(
     tree = (*queue)->char_data;
 
     free(*queue);
+    free(char_freqs);
 
     return tree;
 }
@@ -166,9 +170,9 @@ void encode(
 
     unsigned int input_file_len = 0;
 
-    Code * code_table[BLOCK_SIZE] = { 0 };
+    Code * code_table[MAX_BYTE_COUNT] = { 0 };
 
-    IO_BUFF * out = __io_stream_init(fout, WRITE);
+    IO_BUFF * out = io_stream_init(fout, WRITE);
 
     TREE_NODE * tree = build_tree(fin, &input_file_len);
 
@@ -179,8 +183,8 @@ void encode(
 
     build_codes(tree, 0, input_buff, code_table);
 
-    __write_tree(out, tree);
-    __next(out);
+    write_tree(out, tree);
+    next(out);
 
     freeTree(tree);
 
@@ -197,17 +201,17 @@ void encode(
             code_len = code_table[input_buff[buff_pos++]]->len;
 
             for (pos = 0; pos < code_len; pos++)
-                __write_bit(out, code[pos] - '0');
+                write_bit(out, code[pos] - '0');
 
             buff_len--;
         }
     }
 
-    __write_end(out);
+    write_end(out);
 
     free(out);
 
-    for (int k = 0; k < BLOCK_SIZE; k++)
+    for (int k = 0; k < MAX_BYTE_COUNT; k++)
         if (code_table[k])
             free(code_table[k]);
 }
@@ -216,21 +220,23 @@ void decode(
         FILE * fin,
         FILE * fout)
 {
-    unsigned int len = 0;
+    unsigned char output_buff[BLOCK_SIZE];
+    unsigned int len = 0,
+                 output_pos = 0;
     int bit;
 
     TREE_NODE * tree = 0,
               * n = 0;
 
-    IO_BUFF * out = __io_stream_init(fin, READ);
+    IO_BUFF * out = io_stream_init(fin, READ);
 
     fread(&len, sizeof(int), 1, out->file);
 
     if (!len)
         return;
 
-    tree = __read_tree(out);
-    __next(out);
+    tree = read_tree(out);
+    next(out);
 
     if (tree == NULL)
         return;
@@ -239,11 +245,17 @@ void decode(
 
     while (len > 0) {
         if (isLeaf(n)) {
-            fputc(n->c, fout);
+            output_buff[output_pos++] = n->c;
+
+            if (output_pos == BLOCK_SIZE) {
+                fwrite(output_buff, 1, BLOCK_SIZE, fout);
+                output_pos = 0;
+            }
+
             n = tree;
             len--;
         } else {
-            bit = __read_bit(out);
+            bit = read_bit(out);
 
             if (bit)
                 n = n->child[right];
@@ -252,5 +264,6 @@ void decode(
         }
     }
 
+    fwrite(output_buff, 1, output_pos, fout);
     freeTree(tree);
 }

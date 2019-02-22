@@ -133,6 +133,7 @@ inline TREE_NODE * get(
         QUEUE_NODE ** head)
 {
     TREE_NODE * temp = peek(head);
+
     pop(head);
 
     return temp;

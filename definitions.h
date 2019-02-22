@@ -15,7 +15,8 @@
                                     "INPUTFILENAME to OUTPUTFILENAME\n\n\tOptions:\n\t\t-e\tencode\n\t\t-d\t" \
                                     "decode\n\t\t"); exit(EXIT_SUCCESS);};
 
-#define BLOCK_SIZE 256 // 2^8 do not change
+#define BLOCK_SIZE 256
+#define MAX_BYTE_COUNT 256 // 2^8 do not change
 
 #define true 1
 #define false 0

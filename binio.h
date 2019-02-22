@@ -11,7 +11,7 @@
 
 typedef struct st_BitBuff
 {
-    unsigned char string[BLOCK_SIZE];
+    unsigned char * string;
 
     size_t string_pos;
     size_t byte_pos;
@@ -19,34 +19,34 @@ typedef struct st_BitBuff
 } IO_BUFF;
 
 
-void __write_bit(
-        IO_BUFF * out,
+void write_bit(
+        IO_BUFF *out,
         int bit);
 
 
-int __read_bit(
-        IO_BUFF * in);
+int read_bit(
+        IO_BUFF *in);
 
 
-void __write_byte(
-        IO_BUFF * out,
+void write_byte(
+        IO_BUFF *out,
         unsigned char byte);
 
 
-unsigned char __read_byte(
-        IO_BUFF * in);
+unsigned char read_byte(
+        IO_BUFF *in);
 
 
-void __write_end(
-        IO_BUFF * out);
+void write_end(
+        IO_BUFF *out);
 
 
-void __next(
-        IO_BUFF * buff);
+void next(
+        IO_BUFF *buff);
 
 
-IO_BUFF * __io_stream_init(
-        FILE * file,
+IO_BUFF * io_stream_init(
+        FILE *file,
         bool mode); // mode is either WRITE or READ (defined in "definitions.h")
 
 #endif
