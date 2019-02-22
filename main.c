@@ -10,50 +10,35 @@
 
 int main(
         int argc,
-        char *argv[])
+        char * argv[])
 {
+    char buff;
+
     if (argc == 4) {
-
-        FILE * in = fopen(argv[argc - 2], "rb"),
-             * out = fopen(argv[argc - 1], "wb");
-
-        if (in == NULL) INPUT_FILE_ERROR;
-        if (out == NULL) OUTPUT_FILE_ERROR;
-
         if (!strcmp(argv[1], "-e")) {
-            encode(in, out, false);
+            EncodeFile(argv[argc - 2], argv[argc - 1], false);
         }
         else if (!strcmp(argv[1], "-d")) {
-            decode(in, out);
+            DecodeFile(argv[argc - 2], argv[argc - 1], false);
         }
         else CMD_ARGUMENTS_ERROR;
-
-        fclose(in);
-        fclose(out);
     }
     else if (argc == 1) {
-        FILE * in = fopen("in.txt", "rb"),
-             * out = fopen("out.txt", "wb");
+        FILE * in = fopen("in.txt", "rb");
 
         if (in == NULL) INPUT_FILE_ERROR;
-        if (out == NULL) OUTPUT_FILE_ERROR;
-
-        char buff;
 
         fread(&buff, 1, 1, in);
 
-        fseek(in, 3, 0);
+        fclose(in);
 
         if (buff == 'c') {
-            encode(in, out, true);
+            EncodeFile("in.txt", "out.txt", true);
         }
         else if (buff == 'd') {
-            decode(in, out);
+            DecodeFile("in.txt", "out.txt", true);
         }
         else CMD_ARGUMENTS_ERROR;
-
-        fclose(in);
-        fclose(out);
     }
     else CMD_ARGUMENTS_ERROR;
 

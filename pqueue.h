@@ -8,48 +8,50 @@
 
 #include "definitions.h"
 
-// struct types are defined in "definitions.h"
+// struct types TREE_NODE and QUEUE_NODE are defined in "definitions.h"
 
-TREE_NODE * newCHNode(
-        unsigned int freq,
+
+TREE_NODE * NewTreeNode(
+        unsigned int quantity,
         unsigned char c,
         TREE_NODE * l,
         TREE_NODE * r);
 
 
-QUEUE_NODE * newQNode(
+QUEUE_NODE * NewQueueNode(
         TREE_NODE * data);
 
 
-bool isLeaf(
+bool IsLeaf(
         TREE_NODE * node);
 
 
-void freeTree(
+void DestroyTree(
         TREE_NODE * root);
 
 
-TREE_NODE * peek(
+TREE_NODE * Peek(
         QUEUE_NODE ** head);
 
 
-void pop(
+void Pop(
         QUEUE_NODE ** head);
 
 
-int isEmpty(
+int QueueIsEmpty(
         QUEUE_NODE ** head);
 
 
-void push(
-        QUEUE_NODE ** head, TREE_NODE * data);
+void QueuePush(
+        QUEUE_NODE ** head,
+        TREE_NODE * data);
 
 
-int queueLength(
+int QueueLength(
         QUEUE_NODE ** head);
 
 
-TREE_NODE * get(
+TREE_NODE * QueueGet(
         QUEUE_NODE ** head);
 
 #endif

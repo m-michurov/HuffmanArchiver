@@ -4,11 +4,11 @@
 
 #include "pqueue.h"
 
-TREE_NODE * newCHNode(
-        unsigned int freq,
+TREE_NODE * NewTreeNode(
+        unsigned int quantity,
         unsigned char c,
-        TREE_NODE * l,
-        TREE_NODE * r)
+        TREE_NODE *l,
+        TREE_NODE *r)
 {
     TREE_NODE* new_node = (TREE_NODE*)malloc(sizeof(TREE_NODE));
 
@@ -16,13 +16,13 @@ TREE_NODE * newCHNode(
     new_node->child[right] = r;
 
     new_node->c = c;
-    new_node->quantity = freq;
+    new_node->quantity = quantity;
 
     return new_node;
 }
 
-QUEUE_NODE * newQNode(
-        TREE_NODE * data)
+QUEUE_NODE * NewQueueNode(
+        TREE_NODE *data)
 {
     QUEUE_NODE * new_node = (QUEUE_NODE *)malloc(sizeof(QUEUE_NODE));
 
@@ -32,8 +32,8 @@ QUEUE_NODE * newQNode(
     return new_node;
 }
 
-inline bool isLeaf(
-        TREE_NODE * node)
+inline bool IsLeaf(
+        TREE_NODE *node)
 {
     if (node == NULL)
         return 0;
@@ -41,26 +41,26 @@ inline bool isLeaf(
     return node->child[left] || node->child[right] ? false : true;
 }
 
-void freeTree(
-        TREE_NODE * root)
+void DestroyTree(
+        TREE_NODE *root)
 {
     if (root == NULL)
         return;
 
-    freeTree(root->child[left]);
-    freeTree(root->child[right]);
+    DestroyTree(root->child[left]);
+    DestroyTree(root->child[right]);
 
     free(root);
 }
 
-inline TREE_NODE * peek(
-        QUEUE_NODE ** head)
+inline TREE_NODE * Peek(
+        QUEUE_NODE **head)
 {
     return (*head)->char_data;
 }
 
-inline void pop(
-        QUEUE_NODE ** head)
+inline void Pop(
+        QUEUE_NODE **head)
 {
     QUEUE_NODE * temp = * head;
     (*head) = (*head)->next;
@@ -68,25 +68,25 @@ inline void pop(
     free(temp);
 }
 
-inline int isEmpty(
-        QUEUE_NODE ** head)
+inline int QueueIsEmpty(
+        QUEUE_NODE **head)
 {
     return (* head) == NULL;
 }
 
-void push(
-        QUEUE_NODE ** head,
-        TREE_NODE * data)
+void QueuePush(
+        QUEUE_NODE **head,
+        TREE_NODE *data)
 {
-    if (isEmpty(head)) {
-        *head = newQNode(data);
+    if (QueueIsEmpty(head)) {
+        *head = NewQueueNode(data);
         return;
     }
 
     QUEUE_NODE * start = (*head);
 
     // Create new Node
-    QUEUE_NODE* temp = newQNode(data);
+    QUEUE_NODE* temp = NewQueueNode(data);
 
     // Special Case: The head of list has lesser
     // priority than new char_node. So insert new
@@ -112,13 +112,13 @@ void push(
     }
 }
 
-int queueLength(
-        QUEUE_NODE ** head)
+int QueueLength(
+        QUEUE_NODE **head)
 {
     QUEUE_NODE * start = *head;
     int len = 0;
 
-    if (isEmpty(&start))
+    if (QueueIsEmpty(&start))
         return 0;
 
     while (start) {
@@ -129,12 +129,12 @@ int queueLength(
     return len;
 }
 
-inline TREE_NODE * get(
-        QUEUE_NODE ** head)
+inline TREE_NODE * QueueGet(
+        QUEUE_NODE **head)
 {
-    TREE_NODE * temp = peek(head);
+    TREE_NODE * temp = Peek(head);
 
-    pop(head);
+    Pop(head);
 
     return temp;
 }

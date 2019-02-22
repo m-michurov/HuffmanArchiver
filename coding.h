@@ -9,14 +9,20 @@
 #include "pqueue.h"
 #include "binio.h"
 
-void encode(
-        FILE *fin,
-        FILE *fout,
-        bool skip);
+// Boolean variable "skip" is used for special cases
+// when data representing operation mode is stored
+// in first three bytes of input file
+void EncodeFile(
+        char * in_file,
+        char * out_file,
+        bool skip_three);
 
-
-void decode(
-        FILE * fin,
-        FILE * fout);
+// Boolean variable "skip" is used for special cases
+// when data representing operation mode is stored
+// in first three bytes of input file
+void DecodeFile(
+        char * in_file,
+        char * out_file,
+        bool skip_three);
 
 #endif

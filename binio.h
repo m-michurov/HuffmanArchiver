@@ -11,42 +11,43 @@
 
 typedef struct st_BitBuff
 {
-    unsigned char * string;
-
     size_t string_pos;
     size_t byte_pos;
+
     FILE * file;
+    unsigned char * string;
 } IO_BUFF;
 
 
-void write_bit(
-        IO_BUFF *out,
+void BitWrite(
+        IO_BUFF * out,
         int bit);
 
 
-int read_bit(
+int BitRead(
         IO_BUFF *in);
 
 
-void write_byte(
-        IO_BUFF *out,
+void ByteWrite(
+        IO_BUFF * out,
         unsigned char byte);
 
 
-unsigned char read_byte(
-        IO_BUFF *in);
+unsigned char ByteRead(
+        IO_BUFF * in);
 
 
-void write_end(
-        IO_BUFF *out);
+void EndWrite(
+        IO_BUFF * out);
 
 
-void next(
-        IO_BUFF *buff);
+void NextByte(
+        IO_BUFF * buff);
 
-
-IO_BUFF * io_stream_init(
-        FILE *file,
-        bool mode); // mode is either WRITE or READ (defined in "definitions.h")
+// Boolean variable "mode" should be
+// either WRITE or READ (defined in "definitions.h")
+IO_BUFF * InitBinaryIO(
+        FILE * file,
+        bool mode);
 
 #endif

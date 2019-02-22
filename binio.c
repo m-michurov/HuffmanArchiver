@@ -1,6 +1,6 @@
 #include "binio.h"
 
-inline void write_bit(
+inline void BitWrite(
         IO_BUFF *out,
         int bit)
 {
@@ -20,7 +20,7 @@ inline void write_bit(
     }
 }
 
-inline int read_bit(
+inline int BitRead(
         IO_BUFF *in)
 {
     if (in->byte_pos > 7) {
@@ -37,39 +37,39 @@ inline int read_bit(
     return ((in->string[in->string_pos]) >> (7 - in->byte_pos++))  & 0x01;
 }
 
-inline void write_byte(
+inline void ByteWrite(
         IO_BUFF *out,
         unsigned char byte)
 {
     for (int k = 7; k >= 0; k--)
-        write_bit(out, (byte >> k) & 0x01);
+        BitWrite(out, (byte >> k) & 0x01);
 }
 
-inline unsigned char read_byte(
+inline unsigned char ByteRead(
         IO_BUFF *in)
 {
     unsigned char byte = 0;
 
     for (int k = 7; k >= 0; k--)
-        byte += (read_bit(in) << k);
+        byte += (BitRead(in) << k);
 
     return byte;
 }
 
-inline void write_end(
+inline void EndWrite(
         IO_BUFF *out)
 {
     fwrite(out->string, 1, out->string_pos + (size_t)(out->byte_pos ? 1 : 0), out->file);
 }
 
-inline void next(
+inline void NextByte(
         IO_BUFF *buff)
 {
     buff->string_pos += buff->byte_pos ? 1 : 0;
     buff->byte_pos = 0;
 }
 
-IO_BUFF * io_stream_init(
+IO_BUFF * InitBinaryIO(
         FILE *file,
         bool mode)
 {
