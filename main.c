@@ -6,7 +6,6 @@
 
 #include "definitions.h"
 #include "coding.h"
-#include <limits.h>
 
 int main(
         int argc,
