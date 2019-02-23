@@ -22,9 +22,7 @@ static TREE_NODE * read_tree(
         IO_BUFF * in)
 {
     int bit = 0;
-
     unsigned char byte = 0;
-
     TREE_NODE * node;
 
     bit = BitRead(in);
@@ -134,8 +132,8 @@ static TREE_NODE * build_tree(
               * b,
               * tree;
 
-    QUEUE_NODE * pq = 0;
-    QUEUE_NODE ** queue = &pq;
+    QUEUE_NODE * pq = 0,
+               ** queue = &pq;
 
     char_freqs = count_freqs(in, &input_file_len);
 
@@ -161,6 +159,7 @@ static TREE_NODE * build_tree(
 
     return tree;
 }
+
 void EncodeFile(
         char *in_file,
         char *out_file,
@@ -200,14 +199,17 @@ void EncodeFile(
     build_codes(tree, code_table, 0, input_buff);
 
     write_tree(out, tree);
+
     NextByte(out);
 
     DestroyTree(tree);
 
     if (skip_three)
         fseek(fin, 3, 0);
-    else
+    else {
         fseek(fin, 0, 0);
+        printf("Encoding %s\n", in_file);
+    }
 
     while ((buff_len = fread(input_buff, 1, BLOCK_SIZE, fin))) {
         completed_len += buff_len;
@@ -262,6 +264,8 @@ void DecodeFile(
 
     if (skip_three)
         fseek(fin, 3, 0);
+    else
+        printf("Decoding %s\n", in_file);
 
     IO_BUFF * out = InitBinaryIO(fin, READ);
 
