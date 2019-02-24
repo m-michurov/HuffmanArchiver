@@ -14,7 +14,7 @@
                                   "Archiver {-e|-d} <inputfilename> <outputfilename>\n" \
                                   "DESCRIPTION\n\tEncode/DecodeFile INPUTFILENAME to " \
                                   "OUTPUTFILENAME\n\n\tOptions:\n\t\t-e\tEncodeFile\n\t\t-d\t" \
-                                  "DecodeFile\n\t\t");                      exit(EXIT_SUCCESS);};
+                                  "DecodeFile\n\t\t"); exit(EXIT_SUCCESS);};
 
 #define BLOCK_SIZE      4096
 #define MAX_BYTE_COUNT  256 // 2^8 do not change
@@ -22,8 +22,8 @@
 #define true    1
 #define false   0
 
-#define WRITE   BLOCK_SIZE
-#define READ    0
+#define WRITE   0
+#define READ    BLOCK_SIZE
 
 #define right   1
 #define left    0

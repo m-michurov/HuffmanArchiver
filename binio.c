@@ -82,7 +82,7 @@ IO_BUFF * InitBinaryIO(
     memset(new_buff->string, 0, BLOCK_SIZE);
 
     new_buff->file = file;
-    new_buff->string_pos = BLOCK_SIZE - mode;
+    new_buff->string_pos = mode;
     new_buff->byte_pos = 0;
 
     return new_buff;
