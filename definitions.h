@@ -22,9 +22,6 @@
 #define true    1
 #define false   0
 
-#define WRITE   0
-#define READ    BLOCK_SIZE
-
 #define right   1
 #define left    0
 

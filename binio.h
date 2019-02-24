@@ -9,6 +9,9 @@
 #include "pqueue.h"
 #include "definitions.h"
 
+#define WRITE   0
+#define READ    BLOCK_SIZE
+
 typedef struct st_BitBuff
 {
     size_t string_pos;
