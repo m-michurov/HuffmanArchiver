@@ -8,18 +8,36 @@
 
 #include "definitions.h"
 
-// struct types TREE_NODE and QUEUE_NODE are defined in "definitions.h"
+typedef struct st_QueueNode QUEUE_NODE;
+typedef struct st_TreeNode TREE_NODE;
+
+// A binary tree node
+struct st_TreeNode
+{
+    TREE_NODE * child[2];
+    unsigned char c;
+};
+
+// A queue node
+struct st_QueueNode
+{
+    TREE_NODE * char_data;
+
+    unsigned int priority;
+
+    QUEUE_NODE * next;
+};
 
 
 TREE_NODE * NewTreeNode(
-        unsigned int quantity,
         unsigned char c,
         TREE_NODE * l,
         TREE_NODE * r);
 
 
 QUEUE_NODE * NewQueueNode(
-        TREE_NODE * data);
+        TREE_NODE * data,
+        unsigned int priority);
 
 
 bool IsLeaf(
@@ -44,7 +62,8 @@ int QueueIsEmpty(
 
 void QueuePush(
         QUEUE_NODE ** head,
-        TREE_NODE * data);
+        TREE_NODE * data,
+        unsigned int priority);
 
 
 int QueueLength(

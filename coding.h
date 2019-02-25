@@ -9,6 +9,14 @@
 #include "pqueue.h"
 #include "binio.h"
 
+// A struct to store character code and it's length
+typedef struct st_Code
+{
+    unsigned char code[MAX_BYTE_COUNT + 1];
+
+    size_t len;
+} Code;
+
 // Boolean variable "skip" is used for special cases
 // when data representing operation mode is stored
 // in first three bytes of input file

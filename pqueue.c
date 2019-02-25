@@ -5,10 +5,9 @@
 #include "pqueue.h"
 
 TREE_NODE * NewTreeNode(
-        unsigned int quantity,
         unsigned char c,
-        TREE_NODE *l,
-        TREE_NODE *r)
+        TREE_NODE * l,
+        TREE_NODE * r)
 {
     TREE_NODE* new_node = (TREE_NODE*)malloc(sizeof(TREE_NODE));
 
@@ -16,24 +15,25 @@ TREE_NODE * NewTreeNode(
     new_node->child[right] = r;
 
     new_node->c = c;
-    new_node->quantity = quantity;
 
     return new_node;
 }
 
 QUEUE_NODE * NewQueueNode(
-        TREE_NODE *data)
+        TREE_NODE * data,
+        unsigned int priority)
 {
     QUEUE_NODE * new_node = (QUEUE_NODE *)malloc(sizeof(QUEUE_NODE));
 
     new_node->char_data = data;
+    new_node->priority = priority;
     new_node->next = NULL;
 
     return new_node;
 }
 
 inline bool IsLeaf(
-        TREE_NODE *node)
+        TREE_NODE * node)
 {
     if (node == NULL)
         return 0;
@@ -42,7 +42,7 @@ inline bool IsLeaf(
 }
 
 void DestroyTree(
-        TREE_NODE *root)
+        TREE_NODE * root)
 {
     if (root == NULL)
         return;
@@ -54,13 +54,13 @@ void DestroyTree(
 }
 
 inline TREE_NODE * Peek(
-        QUEUE_NODE **head)
+        QUEUE_NODE ** head)
 {
     return (*head)->char_data;
 }
 
 inline void Pop(
-        QUEUE_NODE **head)
+        QUEUE_NODE ** head)
 {
     QUEUE_NODE * temp = * head;
     (*head) = (*head)->next;
@@ -69,29 +69,30 @@ inline void Pop(
 }
 
 inline int QueueIsEmpty(
-        QUEUE_NODE **head)
+        QUEUE_NODE ** head)
 {
     return (* head) == NULL;
 }
 
 void QueuePush(
-        QUEUE_NODE **head,
-        TREE_NODE *data)
+        QUEUE_NODE ** head,
+        TREE_NODE * data,
+        unsigned int priority)
 {
     if (QueueIsEmpty(head)) {
-        *head = NewQueueNode(data);
+        *head = NewQueueNode(data, priority);
         return;
     }
 
     QUEUE_NODE * start = (*head);
 
     // Create new Node
-    QUEUE_NODE* temp = NewQueueNode(data);
+    QUEUE_NODE * temp = NewQueueNode(data, priority);
 
     // Special Case: The head of list has lesser
     // priority than new char_node. So insert new
     // char_node before head char_node and change head char_node.
-    if ((*head)->char_data->quantity > data->quantity) {
+    if ((*head)->priority > priority) {
 
         // Insert New Node before head
         temp->next = *head;
@@ -101,7 +102,7 @@ void QueuePush(
         // Traverse the list and find a
         // position to insert new char_node
         while (start->next != NULL &&
-               start->next->char_data->quantity < data->quantity) {
+               start->next->priority < priority) {
             start = start->next;
         }
 
@@ -113,7 +114,7 @@ void QueuePush(
 }
 
 int QueueLength(
-        QUEUE_NODE **head)
+        QUEUE_NODE ** head)
 {
     QUEUE_NODE * start = *head;
     int len = 0;
@@ -130,7 +131,7 @@ int QueueLength(
 }
 
 inline TREE_NODE * QueueGet(
-        QUEUE_NODE **head)
+        QUEUE_NODE ** head)
 {
     TREE_NODE * temp = Peek(head);
 

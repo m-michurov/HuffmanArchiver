@@ -1,20 +1,35 @@
 #include "coding.h"
 
-// Recursively traverse the tree and write tree structure to file
-static void write_tree(
+// Recursively traverse the tree and write tree structure to file and build codes
+static void traverse(
         IO_BUFF * out,
-        TREE_NODE * node)
+        TREE_NODE * node,
+        Code ** table,
+        size_t pos,
+        unsigned char * buff)
 {
     if (IsLeaf(node)) {
         BitWrite(out, 0);
-
         ByteWrite(out, node->c);
-    } else {
-        BitWrite(out, 1);
 
-        write_tree(out, node->child[left]);
-        write_tree(out, node->child[right]);
+        buff[pos] = 0;
+
+        table[node->c] = (Code *) malloc(sizeof(Code));
+        if (table[node->c] == NULL) MEM_ERROR;
+
+        strcpy((char *) table[node->c]->code, (char *) buff);
+        table[node->c]->len = (short) pos;
+
+        return;
     }
+
+    BitWrite(out, 1);
+
+    buff[pos] = '0';
+    traverse(out, node->child[left], table, pos + 1, buff);
+
+    buff[pos] = '1';
+    traverse(out, node->child[right], table, pos + 1, buff);
 }
 
 // Recursively recreate the tree structure from file
@@ -30,9 +45,9 @@ static TREE_NODE * read_tree(
     if (bit == 0) {
         byte = ByteRead(in);
 
-        node = NewTreeNode(0, byte, 0, 0);
+        node = NewTreeNode(byte, NULL, NULL);
     } else {
-        node = NewTreeNode(0, 0, 0, 0);
+        node = NewTreeNode('\0', NULL, NULL);
 
         node->child[left] = read_tree(in);
         node->child[right] = read_tree(in);
@@ -41,92 +56,20 @@ static TREE_NODE * read_tree(
     return node;
 }
 
-// Recursively traverse the tree and build character codes
-static void build_codes(
-        TREE_NODE * node,
-        Code ** table,
-        size_t pos,
-        unsigned char * buff)
-{
-    if (node == NULL)
-        return;
-
-    if (IsLeaf(node)) {
-        buff[pos] = 0;
-
-        table[node->c] = (Code *)malloc(sizeof(Code));
-
-        if (table[node->c] == NULL) MEM_ERROR;
-
-        strcpy((char *)table[node->c]->code, (char *)buff);
-        table[node->c]->len = (short)pos;
-
-        return;
-    }
-
-    buff[pos] = '0';
-    build_codes(node->child[left], table, pos + 1, buff);
-
-    buff[pos] = '1';
-    build_codes(node->child[right], table, pos + 1, buff);
-}
-
-// Count character quantities and scale each to fit 0 - 255 range
-// to avoid integer overflow when building the tree
-static unsigned char * count_freqs(
-        FILE * in,
-        unsigned int * len)
-{
-    unsigned char input_buff[BLOCK_SIZE],
-                * char_freqs = (unsigned char *)malloc(MAX_BYTE_COUNT),
-                  scaled = 0;
-
-    unsigned int max = UCHAR_MAX,
-                 k = 0,
-                 freqs[MAX_BYTE_COUNT] = { 0 },
-                 pos = 0;
-
-    unsigned long long total = 0;
-
-    if (char_freqs == NULL) MEM_ERROR;
-
-    while ((*len = fread(input_buff, 1, BLOCK_SIZE, in))) {
-        while (pos < *len)
-            freqs[(int) input_buff[pos++]]++;
-
-        pos = 0;
-        total += *len;
-    }
-
-    if (total > UINT_MAX) SIZE_ERROR;
-
-    *len = (unsigned int) total;
-
-    for (k = 0; k < MAX_BYTE_COUNT; k++)
-        if (freqs[k] > max)
-            max = freqs[k];
-
-
-    for (k = 0; k < MAX_BYTE_COUNT; k++) {
-        scaled = (unsigned char)(freqs[k] / ((double)max / (double)UCHAR_MAX));
-
-        if (scaled == 0 && freqs[k] != 0)
-            char_freqs[k] = 1;
-        else
-            char_freqs[k] = scaled;
-    }
-
-    return char_freqs;
-}
-
 // Build the tree using priority queue (algorithm taken directly
 // from https://en.wikipedia.org/wiki/Huffman_coding)
 static TREE_NODE * build_tree(
         FILE * in,
         unsigned int * len)
 {
-    unsigned char * char_freqs;
-    unsigned int input_file_len = 0;
+    unsigned char input_buff[BLOCK_SIZE];
+
+    unsigned int freqs[MAX_BYTE_COUNT],
+                 read = 0,
+                 new_priority = 0,
+                 pos = 0;
+
+    unsigned long long total = 0;
 
     TREE_NODE * a,
               * b,
@@ -135,27 +78,36 @@ static TREE_NODE * build_tree(
     QUEUE_NODE * pq = 0,
                ** queue = &pq;
 
-    char_freqs = count_freqs(in, &input_file_len);
+    while ((read = fread(input_buff, 1, BLOCK_SIZE, in))) {
+        while (pos < read)
+            freqs[(int) input_buff[pos++]]++;
 
-    *len = input_file_len;
+        pos = 0;
+        total += read;
+    }
+
+    if (total > UINT_MAX) SIZE_ERROR;
+
+    *len = (unsigned int)total;
 
     for (int i = 0; i < MAX_BYTE_COUNT; i++)
-        if (char_freqs[i])
-            QueuePush(queue, NewTreeNode(char_freqs[i], (unsigned char) i, 0, 0));
+        if (freqs[i])
+            QueuePush(queue, NewTreeNode((unsigned char) i, 0, 0), freqs[i]);
 
     if (*queue == NULL)
         return NULL;
 
     while (QueueLength(queue) > 1) {
+        new_priority = (*queue)->priority;
         a = QueueGet(queue);
+        new_priority += (*queue)->priority;
         b = QueueGet(queue);
-        QueuePush(queue, NewTreeNode(a->quantity + b->quantity, 0, a, b));
+        QueuePush(queue, NewTreeNode(0, a, b), new_priority);
     }
 
     tree = (*queue)->char_data;
 
     free(*queue);
-    free(char_freqs);
 
     return tree;
 }
@@ -191,18 +143,14 @@ void EncodeFile(
 
     TREE_NODE * tree = build_tree(fin, &input_file_len);
 
-    if (tree == NULL)
-        return;
-
     fwrite(&input_file_len, sizeof(int), 1, fout);
 
-    build_codes(tree, code_table, 0, input_buff);
-
-    write_tree(out, tree);
-
-    NextByte(out);
+    if (tree)
+        traverse(out, tree, code_table, 0, input_buff);
 
     DestroyTree(tree);
+
+    NextByte(out);
 
     if (skip_three)
         fseek(fin, 3, 0);
@@ -262,25 +210,21 @@ void DecodeFile(
     TREE_NODE * tree = 0,
               * n = 0;
 
+    IO_BUFF * out = InitBinaryIO(fin, READ);
+
     if (skip_three)
         fseek(fin, 3, 0);
     else
         printf("Decoding %s\n", in_file);
 
-    IO_BUFF * out = InitBinaryIO(fin, READ);
-
     fread(&len, sizeof(int), 1, out->file);
 
-    if (!len)
-        return;
+    if (len) {
+        stored_len = len;
+        tree = read_tree(out);
+    }
 
-    stored_len = len;
-
-    tree = read_tree(out);
     NextByte(out);
-
-    if (tree == NULL)
-        return;
 
     n = tree;
 
@@ -292,11 +236,10 @@ void DecodeFile(
                 fwrite(output_buff, 1, BLOCK_SIZE, fout);
 
                 completed_len += output_pos;
+                output_pos = 0;
 
                 if (!skip_three)
                     printf("\r%.2lf %%", (double)completed_len / stored_len * 100);
-
-                output_pos = 0;
             }
 
             n = tree;

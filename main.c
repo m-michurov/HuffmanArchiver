@@ -22,6 +22,7 @@ int main(
         }
         else CMD_ARGUMENTS_ERROR;
     }
+
     else if (argc == 1) {
         FILE * in = fopen("in.txt", "rb");
 
@@ -39,6 +40,7 @@ int main(
         }
         else CMD_ARGUMENTS_ERROR;
     }
+
     else CMD_ARGUMENTS_ERROR;
 
     return 0;
