@@ -179,6 +179,7 @@ void EncodeFile(
 
     EndWrite(out);
 
+    free(out->string);
     free(out);
 
     fclose(fin);
@@ -210,21 +211,21 @@ void DecodeFile(
     TREE_NODE * tree = 0,
               * n = 0;
 
-    IO_BUFF * out = InitBinaryIO(fin, READ);
+    IO_BUFF * in = InitBinaryIO(fin, READ);
 
     if (skip_three)
         fseek(fin, 3, 0);
     else
         printf("Decoding %s\n", in_file);
 
-    fread(&len, sizeof(int), 1, out->file);
+    fread(&len, sizeof(int), 1, in->file);
 
     if (len) {
         stored_len = len;
-        tree = read_tree(out);
+        tree = read_tree(in);
     }
 
-    NextByte(out);
+    NextByte(in);
 
     n = tree;
 
@@ -245,7 +246,7 @@ void DecodeFile(
             n = tree;
             len--;
         } else {
-            bit = BitRead(out);
+            bit = BitRead(in);
 
             if (bit)
                 n = n->child[right];
@@ -260,6 +261,9 @@ void DecodeFile(
 
     if (!skip_three)
         printf("\r%.2lf %%", 100.00);
+
+    free(in->string);
+    free(in);
 
     fclose(fin);
     fclose(fout);

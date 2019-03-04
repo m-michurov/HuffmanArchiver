@@ -12,17 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37c69508-d1e4-43a8-a53e-185d0d05ba09" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/main.c.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/HuffmanArchiver.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/in.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/in.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coding.c" beforeDir="false" afterPath="$PROJECT_DIR$/coding.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coding.h" beforeDir="false" afterPath="$PROJECT_DIR$/coding.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definitions.h" beforeDir="false" afterPath="$PROJECT_DIR$/definitions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.c" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pqueue.h" beforeDir="false" afterPath="$PROJECT_DIR$/pqueue.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,10 +42,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/definitions.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
+            <state relative-caret-position="323">
               <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
             </state>
           </provider>
@@ -63,10 +54,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="357">
+              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coding.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-451">
+              <caret line="213" column="16" selection-start-line="213" selection-start-column="16" selection-end-line="213" selection-end-column="16" />
+              <folding>
+                <element signature="e#21#778#0" />
               </folding>
             </state>
           </provider>
@@ -90,10 +93,10 @@
         <option value="$PROJECT_DIR$/binio.h" />
         <option value="$PROJECT_DIR$/coding.h" />
         <option value="$PROJECT_DIR$/pqueue.h" />
-        <option value="$PROJECT_DIR$/coding.c" />
         <option value="$PROJECT_DIR$/pqueue.c" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/definitions.h" />
+        <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/coding.c" />
       </list>
     </option>
   </component>
@@ -109,6 +112,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,12 +129,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cmake-build-debug/harc.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.C/C++" />
   </component>
@@ -183,7 +186,10 @@
       <workItem from="1550914092296" duration="1932000" />
       <workItem from="1551003461698" duration="736000" />
       <workItem from="1551017333201" duration="363000" />
-      <workItem from="1551087944372" duration="5932000" />
+      <workItem from="1551087944372" duration="6961000" />
+      <workItem from="1551096215367" duration="23000" />
+      <workItem from="1551102573839" duration="188000" />
+      <workItem from="1551693769024" duration="318000" />
     </task>
     <task id="LOCAL-00001" summary="dunno it works i guess">
       <created>1550159067593</created>
@@ -283,11 +289,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551017665564</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="got rid of redundant functions">
+      <created>1551094866999</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1551094866999</updated>
+    </task>
+    <task id="LOCAL-00016" summary="got rid of redundant functions">
+      <created>1551095250476</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1551095250476</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91778000" />
+    <option name="totallyTimeSpent" value="93336000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -302,7 +322,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49772727" visible="true" weight="0.2881997" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49772727" visible="true" weight="0.30181542" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5022727" side_tool="true" weight="0.25869894" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -360,7 +380,8 @@
     <MESSAGE value="work in progress&#10;-if i change one f***ing number it doesn't work and o don't know why" />
     <MESSAGE value="The final version&#10;-I hope so&#10;-At least it looks somewhat good" />
     <MESSAGE value="it works" />
-    <option name="LAST_COMMIT_MESSAGE" value="it works" />
+    <MESSAGE value="got rid of redundant functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="got rid of redundant functions" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -451,19 +472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coding.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
-          <folding>
-            <element signature="e#21#778#0" />
-            <element signature="e#384#842#0" />
-            <element signature="e#2697#3635#0" />
-            <element signature="e#3198#4897#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pqueue.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -491,20 +499,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/definitions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="357">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/definitions.h">
+    <entry file="file://$PROJECT_DIR$/coding.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        <state relative-caret-position="-451">
+          <caret line="213" column="16" selection-start-line="213" selection-start-column="16" selection-end-line="213" selection-end-column="16" />
+          <folding>
+            <element signature="e#21#778#0" />
+          </folding>
         </state>
       </provider>
     </entry>
