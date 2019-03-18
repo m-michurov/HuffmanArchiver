@@ -18,6 +18,7 @@
 
 #define MAX_BYTE_COUNT  256 // 2^8 do not change
 #define BLOCK_SIZE      MAX_BYTE_COUNT * MAX_BYTE_COUNT
+#define MAX_FILE_SIZE   4294966500
 
 typedef unsigned int bool;
 

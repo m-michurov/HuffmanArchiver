@@ -86,7 +86,7 @@ static TREE_NODE * build_tree(
         total += read;
     }
 
-    if (total > UINT_MAX) SIZE_ERROR;
+    if (total > MAX_FILE_SIZE) SIZE_ERROR;
 
     *len = (unsigned int)total;
 
@@ -113,8 +113,8 @@ static TREE_NODE * build_tree(
 }
 
 void EncodeFile(
-        char *in_file,
-        char *out_file,
+        char * in_file,
+        char * out_file,
         bool skip_three)
 {
     FILE * fin = fopen(in_file, "rb"),
@@ -124,12 +124,13 @@ void EncodeFile(
     if (fout == NULL) OUTPUT_FILE_ERROR;
 
     unsigned char input_buff[BLOCK_SIZE];
+    unsigned char file_size[4];
     unsigned char * code;
 
-    size_t buff_len = 0,
-           buff_pos = 0,
-           code_len = 0,
-           pos = 0;
+    size_t buff_len = 0;
+    size_t buff_pos = 0;
+    size_t code_len = 0;
+    size_t pos = 0;
 
     unsigned int input_file_len = 0,
                  completed_len = 0;
@@ -143,7 +144,14 @@ void EncodeFile(
 
     TREE_NODE * tree = build_tree(fin, &input_file_len);
 
-    fwrite(&input_file_len, sizeof(int), 1, fout);
+    // This ensures independence from unsigned int size
+    // on different platforms
+    file_size[0] = (unsigned char) ((input_file_len >> 24) & 0xFF);
+    file_size[1] = (unsigned char) ((input_file_len >> 16) & 0xFF);
+    file_size[2] = (unsigned char) ((input_file_len >> 8) & 0xFF);
+    file_size[3] = (unsigned char) ((input_file_len) & 0xFF);
+
+    fwrite(file_size, 1, 4, fout);
 
     if (tree)
         traverse(out, tree, code_table, 0, input_buff);
@@ -191,8 +199,8 @@ void EncodeFile(
 }
 
 void DecodeFile(
-        char *in_file,
-        char *out_file,
+        char * in_file,
+        char * out_file,
         bool skip_three)
 {
     FILE * fin = fopen(in_file, "rb"),
@@ -202,10 +210,13 @@ void DecodeFile(
     if (fout == NULL) OUTPUT_FILE_ERROR;
 
     unsigned char output_buff[BLOCK_SIZE];
-    unsigned int len = 0,
-                 output_pos = 0,
-                 stored_len = 0,
-                 completed_len = 0;
+    unsigned char file_size[4];
+
+    unsigned int len = 0;
+    unsigned int output_pos = 0;
+    unsigned int stored_len = 0;
+    unsigned int completed_len = 0;
+
     int bit;
 
     TREE_NODE * tree = 0,
@@ -218,7 +229,12 @@ void DecodeFile(
     else
         printf("Decoding %s\n", in_file);
 
-    fread(&len, sizeof(int), 1, in->file);
+    fread(file_size, 1, 4, in->file);
+
+    len = ((unsigned int) file_size[0] << 24)
+        + ((unsigned int) file_size[1] << 16)
+        + ((unsigned int) file_size[2] << 8)
+        +  (unsigned int) file_size[3];
 
     if (len) {
         stored_len = len;
