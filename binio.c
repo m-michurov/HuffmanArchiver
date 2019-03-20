@@ -1,7 +1,7 @@
 #include "binio.h"
 
 inline void BitWrite(
-        IO_BUFF *out,
+        IO_BUFF * out,
         int bit)
 {
     out->string[out->string_pos] += (bit & 0x01) << (7 - out->byte_pos++);
@@ -21,7 +21,7 @@ inline void BitWrite(
 }
 
 inline int BitRead(
-        IO_BUFF *in)
+        IO_BUFF * in)
 {
     if (in->byte_pos > 7) {
         in->string_pos++;
@@ -30,6 +30,7 @@ inline int BitRead(
 
     if (in->string_pos == BLOCK_SIZE) {
         fread(in->string, 1, BLOCK_SIZE, in->file);
+
         in->string_pos = 0;
         in->byte_pos = 0;
     }
@@ -46,7 +47,7 @@ inline void ByteWrite(
 }
 
 inline unsigned char ByteRead(
-        IO_BUFF *in)
+        IO_BUFF * in)
 {
     unsigned char byte = 0;
 
@@ -57,7 +58,7 @@ inline unsigned char ByteRead(
 }
 
 inline void EndWrite(
-        IO_BUFF *out)
+        IO_BUFF * out)
 {
     fwrite(out->string, 1, out->string_pos + (size_t)(out->byte_pos ? 1 : 0), out->file);
 }
@@ -70,7 +71,7 @@ inline void NextByte(
 }
 
 IO_BUFF * InitBinaryIO(
-        FILE *file,
+        FILE * file,
         bool mode)
 {
     IO_BUFF * new_buff = (IO_BUFF *)malloc(sizeof(IO_BUFF));

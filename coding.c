@@ -124,7 +124,7 @@ void EncodeFile(
     if (fout == NULL) OUTPUT_FILE_ERROR;
 
     unsigned char input_buff[BLOCK_SIZE];
-    unsigned char file_size[4];
+    unsigned char file_size[4] = { 0 };
     unsigned char * code;
 
     size_t buff_len = 0;
@@ -210,12 +210,14 @@ void DecodeFile(
     if (fout == NULL) OUTPUT_FILE_ERROR;
 
     unsigned char output_buff[BLOCK_SIZE];
-    unsigned char file_size[4];
+    unsigned char file_size[4] = { 0 };
 
     unsigned int len = 0;
     unsigned int output_pos = 0;
     unsigned int stored_len = 0;
     unsigned int completed_len = 0;
+
+    size_t read;
 
     int bit;
 
@@ -229,7 +231,9 @@ void DecodeFile(
     else
         printf("Decoding %s\n", in_file);
 
-    fread(file_size, 1, 4, in->file);
+    read = fread(file_size, 1, 4, in->file);
+
+    if (read < 4) DATA_ERROR
 
     len = ((unsigned int) file_size[0] << 24)
         + ((unsigned int) file_size[1] << 16)
