@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-E:/CLionProjects/HuffmanArchiver/binio.c
-binio.h
-E:/CLionProjects/HuffmanArchiver/binio.h
-
 E:/CLionProjects/HuffmanArchiver/binio.h
 stdio.h
 -
@@ -19,6 +15,20 @@ pqueue.h
 E:/CLionProjects/HuffmanArchiver/pqueue.h
 definitions.h
 E:/CLionProjects/HuffmanArchiver/definitions.h
+
+E:/CLionProjects/HuffmanArchiver/coding.c
+coding.h
+E:/CLionProjects/HuffmanArchiver/coding.h
+
+E:/CLionProjects/HuffmanArchiver/coding.h
+string.h
+-
+definitions.h
+E:/CLionProjects/HuffmanArchiver/definitions.h
+pqueue.h
+E:/CLionProjects/HuffmanArchiver/pqueue.h
+binio.h
+E:/CLionProjects/HuffmanArchiver/binio.h
 
 E:/CLionProjects/HuffmanArchiver/definitions.h
 stdio.h

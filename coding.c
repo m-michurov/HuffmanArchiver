@@ -9,7 +9,7 @@ static void traverse(
         unsigned char * buff)
 {
     if (IsLeaf(node)) {
-        BitWrite(out, 0);
+        BitWrite(out, 1);
         ByteWrite(out, node->c);
 
         buff[pos] = 0;
@@ -23,7 +23,7 @@ static void traverse(
         return;
     }
 
-    BitWrite(out, 1);
+    BitWrite(out, 0);
 
     buff[pos] = '0';
     traverse(out, node->child[left], table, pos + 1, buff);
@@ -42,7 +42,7 @@ static TREE_NODE * read_tree(
 
     bit = BitRead(in);
 
-    if (bit == 0) {
+    if (bit == 1) {
         byte = ByteRead(in);
 
         node = NewTreeNode(byte, NULL, NULL);
@@ -112,6 +112,30 @@ static TREE_NODE * build_tree(
     return tree;
 }
 
+
+size_t tree_node_count(
+        TREE_NODE * node)
+{
+    if (node == NULL)
+        return 0;
+
+    return tree_node_count(node->child[left]) + tree_node_count(node->child[right]) + 1;
+}
+
+
+size_t tree_leaves_count(
+        TREE_NODE * node)
+{
+    if (node == NULL)
+        return 0;
+
+    if (node->child[left] == NULL && node->child[right] == NULL)
+        return 1;
+
+    return (tree_leaves_count(node->child[left]) + tree_leaves_count(node->child[right]));
+}
+
+
 void EncodeFile(
         char * in_file,
         char * out_file,
@@ -158,7 +182,7 @@ void EncodeFile(
 
     DestroyTree(tree);
 
-    NextByte(out);
+    //NextByte(out);
 
     if (skip_three)
         fseek(fin, 3, 0);
@@ -186,6 +210,10 @@ void EncodeFile(
     }
 
     EndWrite(out);
+
+    char rest = input_file_len ? (char) out->byte_pos : (char)'0';
+    fseek(out->file, 0, 0);
+    fwrite(&rest, 1, 1, out->file);
 
     free(out->string);
     free(out);
@@ -240,14 +268,19 @@ void DecodeFile(
         + ((unsigned int) file_size[2] << 8)
         +  (unsigned int) file_size[3];
 
-    if (len) {
+    if (file_size[0] != '0') {
         stored_len = len;
         tree = read_tree(in);
     }
 
-    NextByte(in);
+    //NextByte(in);
 
     n = tree;
+
+    char rest = file_size[0];
+
+    if (rest == '0')
+        return;
 
     while (len > 0) {
         if (IsLeaf(n)) {

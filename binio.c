@@ -29,7 +29,14 @@ inline int BitRead(
     }
 
     if (in->string_pos == BLOCK_SIZE) {
-        fread(in->string, 1, BLOCK_SIZE, in->file);
+        in->read = fread(in->string, 1, BLOCK_SIZE, in->file);
+        in->eof = (bool) feof(in->file);
+
+        if (in->first == 1)
+            in->first = 0;
+
+        if (in->first == 2)
+            in->first = 1;
 
         in->string_pos = 0;
         in->byte_pos = 0;
@@ -85,6 +92,10 @@ IO_BUFF * InitBinaryIO(
     new_buff->file = file;
     new_buff->string_pos = mode;
     new_buff->byte_pos = 0;
+
+    new_buff->eof = false;
+    new_buff->read = 0;
+    new_buff->first = 2;
 
     return new_buff;
 }

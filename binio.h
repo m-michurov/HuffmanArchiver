@@ -16,6 +16,10 @@ typedef struct st_BitBuff
 {
     size_t string_pos;
     size_t byte_pos;
+    size_t read;
+
+    bool eof;
+    bool first;
 
     FILE * file;
     unsigned char * string;
