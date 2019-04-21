@@ -23,7 +23,7 @@ int main(
         else CMD_ARGUMENTS_ERROR;
     }
 
-    else if (argc == 1 || true) {
+    else if (argc == 1) {
         FILE * in = fopen("in.txt", "rb");
 
         if (in == NULL) INPUT_FILE_ERROR;

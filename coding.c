@@ -9,7 +9,7 @@ static void traverse(
         unsigned char * buff)
 {
     if (IsLeaf(node)) {
-        BitWrite(out, 1);
+        BitWrite(out, 0);
         ByteWrite(out, node->c);
 
         buff[pos] = 0;
@@ -23,7 +23,7 @@ static void traverse(
         return;
     }
 
-    BitWrite(out, 0);
+    BitWrite(out, 1);
 
     buff[pos] = '0';
     traverse(out, node->child[left], table, pos + 1, buff);
@@ -42,7 +42,7 @@ static TREE_NODE * read_tree(
 
     bit = BitRead(in);
 
-    if (bit == 1) {
+    if (bit == 0) {
         byte = ByteRead(in);
 
         node = NewTreeNode(byte, NULL, NULL);
@@ -65,18 +65,18 @@ static TREE_NODE * build_tree(
     unsigned char input_buff[BLOCK_SIZE];
 
     unsigned int freqs[MAX_BYTE_COUNT],
-                 read = 0,
-                 new_priority = 0,
-                 pos = 0;
+            read = 0,
+            new_priority = 0,
+            pos = 0;
 
     unsigned long long total = 0;
 
     TREE_NODE * a,
-              * b,
-              * tree;
+            * b,
+            * tree;
 
     QUEUE_NODE * pq = 0,
-               ** queue = &pq;
+            ** queue = &pq;
 
     while ((read = fread(input_buff, 1, BLOCK_SIZE, in))) {
         while (pos < read)
@@ -112,37 +112,13 @@ static TREE_NODE * build_tree(
     return tree;
 }
 
-
-size_t tree_node_count(
-        TREE_NODE * node)
-{
-    if (node == NULL)
-        return 0;
-
-    return tree_node_count(node->child[left]) + tree_node_count(node->child[right]) + 1;
-}
-
-
-size_t tree_leaves_count(
-        TREE_NODE * node)
-{
-    if (node == NULL)
-        return 0;
-
-    if (node->child[left] == NULL && node->child[right] == NULL)
-        return 1;
-
-    return (tree_leaves_count(node->child[left]) + tree_leaves_count(node->child[right]));
-}
-
-
 void EncodeFile(
         char * in_file,
         char * out_file,
         bool skip_three)
 {
     FILE * fin = fopen(in_file, "rb"),
-         * fout = fopen(out_file, "wb");
+            * fout = fopen(out_file, "wb");
 
     if (fin == NULL) INPUT_FILE_ERROR;
     if (fout == NULL) OUTPUT_FILE_ERROR;
@@ -157,7 +133,7 @@ void EncodeFile(
     size_t pos = 0;
 
     unsigned int input_file_len = 0,
-                 completed_len = 0;
+            completed_len = 0;
 
     Code * code_table[MAX_BYTE_COUNT] = { 0 };
 
@@ -182,7 +158,7 @@ void EncodeFile(
 
     DestroyTree(tree);
 
-    //NextByte(out);
+    NextByte(out);
 
     if (skip_three)
         fseek(fin, 3, 0);
@@ -211,10 +187,6 @@ void EncodeFile(
 
     EndWrite(out);
 
-    char rest = input_file_len ? (char) out->byte_pos : (char)'0';
-    fseek(out->file, 0, 0);
-    fwrite(&rest, 1, 1, out->file);
-
     free(out->string);
     free(out);
 
@@ -232,7 +204,7 @@ void DecodeFile(
         bool skip_three)
 {
     FILE * fin = fopen(in_file, "rb"),
-         * fout = fopen(out_file, "wb");
+            * fout = fopen(out_file, "wb");
 
     if (fin == NULL) INPUT_FILE_ERROR;
     if (fout == NULL) OUTPUT_FILE_ERROR;
@@ -250,7 +222,7 @@ void DecodeFile(
     int bit;
 
     TREE_NODE * tree = 0,
-              * n = 0;
+            * n = 0;
 
     IO_BUFF * in = InitBinaryIO(fin, READ);
 
@@ -264,23 +236,18 @@ void DecodeFile(
     if (read < 4) DATA_ERROR
 
     len = ((unsigned int) file_size[0] << 24)
-        + ((unsigned int) file_size[1] << 16)
-        + ((unsigned int) file_size[2] << 8)
-        +  (unsigned int) file_size[3];
+          + ((unsigned int) file_size[1] << 16)
+          + ((unsigned int) file_size[2] << 8)
+          +  (unsigned int) file_size[3];
 
-    if (file_size[0] != '0') {
+    if (len) {
         stored_len = len;
         tree = read_tree(in);
     }
 
-    //NextByte(in);
+    NextByte(in);
 
     n = tree;
-
-    char rest = file_size[0];
-
-    if (rest == '0')
-        return;
 
     while (len > 0) {
         if (IsLeaf(n)) {
