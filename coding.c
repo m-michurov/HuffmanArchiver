@@ -9,7 +9,7 @@ static void traverse(
         unsigned char * buff)
 {
     if (IsLeaf(node)) {
-        BitWrite(out, 0);
+        BitWrite(out, 1);
         ByteWrite(out, node->c);
 
         buff[pos] = 0;
@@ -23,7 +23,7 @@ static void traverse(
         return;
     }
 
-    BitWrite(out, 1);
+    BitWrite(out, 0);
 
     buff[pos] = '0';
     traverse(out, node->child[left], table, pos + 1, buff);
@@ -42,7 +42,7 @@ static TREE_NODE * read_tree(
 
     bit = BitRead(in);
 
-    if (bit == 0) {
+    if (bit == 1) {
         byte = ByteRead(in);
 
         node = NewTreeNode(byte, NULL, NULL);
